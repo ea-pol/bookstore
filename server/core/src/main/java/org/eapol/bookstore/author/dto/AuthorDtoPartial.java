@@ -1,7 +1,11 @@
 package org.eapol.bookstore.author.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class AuthorDtoPartial {
+  @JsonProperty("first_name")
   protected String firstName;
+  @JsonProperty("last_name")
   protected String lastName;
 
   public AuthorDtoPartial(String firstName, String lastName) {

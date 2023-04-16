@@ -23,6 +23,11 @@ public class Author {
 
   public Author() { }
 
+  public Author(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
   public void setAuthorId(Long authorId) {
     this.authorId = authorId;
   }
