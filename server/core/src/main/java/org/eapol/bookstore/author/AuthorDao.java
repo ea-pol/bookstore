@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class AuthorDao {
@@ -27,6 +28,27 @@ public class AuthorDao {
     return session()
             .createQuery("FROM Author", Author.class)
             .getResultList();
+  }
+
+  @Transactional(readOnly = true)
+  public Optional<Author> getById(Long id) {
+    return Optional.ofNullable(
+      session().get(Author.class, id));
+  }
+
+  @Transactional
+  public void deleteById(Long id) {
+    session()
+        .createQuery(
+            "DELETE FROM Author author " +
+            "WHERE author.authorId = :id")
+        .setParameter("id", id)
+        .executeUpdate();
+  }
+
+  @Transactional
+  public Author update(Author author) {
+    return session().merge(author);
   }
 
   private Session session() {
