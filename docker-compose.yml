@@ -1,0 +1,9 @@
+services:
+  database:
+    image: postgres:alpine
+    container_name: bookstore_db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=bookstore
+      - POSTGRES_PASSWORD=postgres
