@@ -20,6 +20,9 @@ public class AuthorResource {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public List<AuthorDto> authors() {
-    return null;
+    return authorDao.all()
+        .stream()
+        .map(AuthorMapper::toDto)
+        .toList();
   }
 }
