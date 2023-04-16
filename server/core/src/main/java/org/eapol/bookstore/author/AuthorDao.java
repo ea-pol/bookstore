@@ -47,8 +47,13 @@ public class AuthorDao {
   }
 
   @Transactional
-  public Author update(Author author) {
-    return session().merge(author);
+  public Author update(Long id, String firstName, String lastName) {
+    return getById(id).map(author -> {
+      author.setFirstName(firstName);
+      author.setLastName(lastName);
+      session().merge(author);
+      return author;
+    }).get();
   }
 
   private Session session() {
