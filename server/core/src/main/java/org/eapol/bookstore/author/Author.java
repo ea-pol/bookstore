@@ -21,6 +21,8 @@ public class Author {
   @Column(name = "last_name")
   private String lastName;
 
+  public Author() { }
+
   public void setAuthorId(Long authorId) {
     this.authorId = authorId;
   }
