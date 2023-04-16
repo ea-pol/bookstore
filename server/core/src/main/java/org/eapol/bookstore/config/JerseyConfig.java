@@ -13,7 +13,7 @@ public class JerseyConfig {
   ResourceConfig config() {
     ResourceConfig config = new ResourceConfig();
     config.register(StatusResource.class);
-    config.register(AuthorResource.class)
+    config.register(AuthorResource.class);
     return config;
   }
 }
