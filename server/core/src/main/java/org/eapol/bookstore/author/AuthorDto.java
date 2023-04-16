@@ -1,12 +1,22 @@
 package org.eapol.bookstore.author;
 
 public class AuthorDto {
+  private Long authorId;
   private String firstName;
   private String lastName;
 
-  public AuthorDto(String firstName, String lastName) {
+  public AuthorDto(Long authorId, String firstName, String lastName) {
+    this.authorId = authorId;
     this.firstName = firstName;
     this.lastName = lastName;
+  }
+
+  public Long getAuthorId() {
+    return authorId;
+  }
+
+  public void setAuthorId(Long authorId) {
+    this.authorId = authorId;
   }
 
   public String getFirstName() {
