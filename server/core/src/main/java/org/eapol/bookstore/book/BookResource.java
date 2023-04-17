@@ -1,11 +1,7 @@
 package org.eapol.bookstore.book;
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eapol.bookstore.author.AuthorService;
@@ -56,5 +52,14 @@ public class BookResource {
     });
 
     return Response.noContent().build();
+  }
+
+  @GET
+  @Path("/{id}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public BookDto book(@PathParam("id") Long id) {
+    return bookService.getByIdEager(id)
+      .map(BookMapper::toDto)
+      .get();
   }
 }

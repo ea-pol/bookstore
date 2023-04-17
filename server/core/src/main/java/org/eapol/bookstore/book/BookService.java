@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -23,5 +24,10 @@ public class BookService {
   @Transactional
   public void save(Book book) {
     bookDao.save(book);
+  }
+
+  @Transactional(readOnly = true)
+  public Optional<Book> getByIdEager(Long id) {
+    return bookDao.getByIdEager(id);
   }
 }

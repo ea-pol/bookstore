@@ -1,10 +1,12 @@
 package org.eapol.bookstore.book;
 
 import jakarta.inject.Inject;
+import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.List;
 
 @Repository
@@ -20,8 +22,7 @@ public class BookDao {
     return session()
       .createQuery(
         "FROM Book book " +
-        "JOIN FETCH Author " +
-        "WHERE book.author_id = author.author_id",
+          "JOIN FETCH book.author",
         Book.class)
       .getResultList();
   }
@@ -29,6 +30,25 @@ public class BookDao {
   public void save(Book book) {
     session().persist(book);
   }
+
+  public Optional<Book> getByIdEager(Long id) {
+    try {
+      Book book = session()
+        .createQuery(
+          "FROM Book book " +
+            "JOIN FETCH book.author " +
+            "WHERE book.book_id = :id",
+          Book.class)
+        .setParameter("id", id)
+        .getSingleResult();
+
+      return Optional.of(book);
+    } catch (NoResultException e) {
+      return Optional.empty();
+    }
+  }
+
+
 
   private Session session() {
     return sessionFactory.getCurrentSession();
