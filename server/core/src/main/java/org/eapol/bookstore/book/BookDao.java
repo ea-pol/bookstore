@@ -22,6 +22,10 @@ public class BookDao {
       .getResultList();
   }
 
+  public void save(Book book) {
+    session().persist(book);
+  }
+
   private Session session() {
     return sessionFactory.getCurrentSession();
   }

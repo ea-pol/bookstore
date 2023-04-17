@@ -38,6 +38,20 @@ public class Book {
   public Book() {
   }
 
+  public Book(
+    Author author,
+    String title,
+    String firstSentence,
+    Long price,
+    Long amount
+  ) {
+    this.author = author;
+    this.title = title;
+    this.firstSentence = firstSentence;
+    this.price = price;
+    this.amount = amount;
+  }
+
   public Long getBookId() {
     return bookId;
   }

@@ -19,4 +19,9 @@ public class BookService {
   public List<Book> getAll() {
     return bookDao.getAll();
   }
+
+  @Transactional
+  public void save(Book book) {
+    bookDao.save(book);
+  }
 }
