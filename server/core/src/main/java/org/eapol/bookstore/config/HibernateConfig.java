@@ -1,6 +1,7 @@
 package org.eapol.bookstore.config;
 
 import org.eapol.bookstore.author.Author;
+import org.eapol.bookstore.book.Book;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Environment;
 import org.hibernate.dialect.PostgreSQLDialect;
@@ -39,7 +40,7 @@ public class HibernateConfig {
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
     sessionFactory.setDataSource(dataSource());
-    sessionFactory.setAnnotatedClasses(Author.class);
+    sessionFactory.setAnnotatedClasses(Author.class, Book.class);
     sessionFactory.setHibernateProperties(hibernateProperties());
 
     return sessionFactory;
