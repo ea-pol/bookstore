@@ -1,11 +1,9 @@
 package org.eapol.bookstore.author;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.eapol.bookstore.book.Book;
+
+import java.util.List;
 
 @Entity
 @Table(name = "author")
@@ -21,7 +19,15 @@ public class Author {
   @Column(name = "last_name")
   private String lastName;
 
-  public Author() { }
+  @OneToMany(
+    mappedBy = "author",
+    cascade = CascadeType.ALL,
+    orphanRemoval = true
+  )
+  private List<Book> books;
+
+  public Author() {
+  }
 
   public Author(String firstName, String lastName) {
     this.firstName = firstName;
@@ -50,5 +56,13 @@ public class Author {
 
   public String getLastName() {
     return lastName;
+  }
+
+  public List<Book> getBooks() {
+    return books;
+  }
+
+  public void setBooks(List<Book> books) {
+    this.books = books;
   }
 }
