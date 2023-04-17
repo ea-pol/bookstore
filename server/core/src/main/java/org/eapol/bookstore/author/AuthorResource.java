@@ -22,17 +22,17 @@ import java.util.List;
 
 @Path("/api/authors")
 public class AuthorResource {
-  private final AuthorDao authorDao;
+  private final AuthorService authorService;
 
   @Inject
-  public AuthorResource(AuthorDao authorDao) {
-    this.authorDao = authorDao;
+  public AuthorResource(AuthorService authorService) {
+    this.authorService = authorService;
   }
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public List<AuthorDto> authors() {
-    return authorDao.all()
+    return authorService.getAll()
         .stream()
         .map(AuthorMapper::toDto)
         .toList();
@@ -45,7 +45,7 @@ public class AuthorResource {
         authorDtoPartial.getFirstName(),
         authorDtoPartial.getLastName());
 
-    authorDao.save(author);
+    authorService.save(author);
 
     return Response.noContent().build();
   }
@@ -54,7 +54,7 @@ public class AuthorResource {
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public AuthorDto author(@PathParam("id") Long id) {
-    return authorDao.getById(id)
+    return authorService.getById(id)
         .map(AuthorMapper::toDto)
         .get();
   }
@@ -68,7 +68,7 @@ public class AuthorResource {
       @RequestBody AuthorDtoPartial authorDtoPartial
   ) {
     return AuthorMapper.toDto(
-        authorDao.update(id,
+        authorService.update(id,
             authorDtoPartial.getFirstName(),
             authorDtoPartial.getLastName()));
   }
@@ -76,7 +76,7 @@ public class AuthorResource {
   @DELETE
   @Path("/{id}")
   public Response deleteById(@PathParam("id") Long id) {
-    authorDao.deleteById(id);
+    authorService.deleteById(id);
     return Response.noContent().build();
   }
 }
