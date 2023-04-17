@@ -3,6 +3,7 @@ package org.eapol.bookstore.config;
 import org.eapol.bookstore.StatusResource;
 import org.eapol.bookstore.author.AuthorResource;
 
+import org.eapol.bookstore.book.BookResource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ public class JerseyConfig {
     ResourceConfig config = new ResourceConfig();
     config.register(StatusResource.class);
     config.register(AuthorResource.class);
+    config.register(BookResource.class);
     return config;
   }
 }
