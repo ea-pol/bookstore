@@ -1,6 +1,7 @@
 package org.eapol.bookstore.book.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.eapol.bookstore.author.Author;
 
 public class BookDto extends BookDtoPartial {
   @JsonProperty("book_id")
@@ -8,13 +9,13 @@ public class BookDto extends BookDtoPartial {
 
   public BookDto(
     Long bookId,
-    Long authorId,
+    Author author,
     String title,
     String firstSentence,
     Long price,
     Long amount
   ) {
-    super(authorId, title, firstSentence, price, amount);
+    super(author, title, firstSentence, price, amount);
     this.bookId = bookId;
   }
 

@@ -1,10 +1,11 @@
 package org.eapol.bookstore.book.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.eapol.bookstore.author.Author;
 
 public class BookDtoPartial {
-  @JsonProperty("author_id")
-  private Long authorId;
+  @JsonProperty("author")
+  private Author author;
   @JsonProperty("title")
   private String title;
   @JsonProperty("first_sentence")
@@ -15,25 +16,25 @@ public class BookDtoPartial {
   private Long amount;
 
   BookDtoPartial(
-    Long authorId,
+    Author author,
     String title,
     String firstSentence,
     Long price,
     Long amount
   ) {
-    this.authorId = authorId;
+    this.author = author;
     this.title = title;
     this.firstSentence = firstSentence;
     this.price = price;
     this.amount = amount;
   }
 
-  public Long getAuthorId() {
-    return authorId;
+  public Author getAuthor() {
+    return author;
   }
 
-  public void setAuthorId(Long authorId) {
-    this.authorId = authorId;
+  public void setAuthor(Author author) {
+    this.author = author;
   }
 
   public String getTitle() {
