@@ -18,7 +18,11 @@ public class BookDao {
 
   public List<Book> getAll() {
     return session()
-      .createQuery("FROM Book", Book.class)
+      .createQuery(
+        "FROM Book book " +
+        "JOIN FETCH Author " +
+        "WHERE book.author_id = author.author_id",
+        Book.class)
       .getResultList();
   }
 

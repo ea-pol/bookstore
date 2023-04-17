@@ -1,17 +1,17 @@
 package org.eapol.bookstore.book.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.eapol.bookstore.author.Author;
+import org.eapol.bookstore.author.dto.AuthorDto;
 
 public class BookDto extends AbstractBookDto {
   @JsonProperty("book_id")
   private Long bookId;
   @JsonProperty("author")
-  private Author author;
+  private AuthorDto authorDto;
 
   public BookDto(
     Long bookId,
-    Author author,
+    AuthorDto authorDto,
     String title,
     String firstSentence,
     Long price,
@@ -19,7 +19,7 @@ public class BookDto extends AbstractBookDto {
   ) {
     super(title, firstSentence, price, amount);
     this.bookId = bookId;
-    this.author = author;
+    this.authorDto = authorDto;
   }
 
   public Long getBookId() {
@@ -30,11 +30,11 @@ public class BookDto extends AbstractBookDto {
     this.bookId = bookId;
   }
 
-  public Author getAuthor() {
-    return author;
+  public AuthorDto getAuthorDto() {
+    return authorDto;
   }
 
-  public void setAuthor(Author author) {
-    this.author = author;
+  public void setAuthorDto(AuthorDto authorDto) {
+    this.authorDto = authorDto;
   }
 }
