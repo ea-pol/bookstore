@@ -40,7 +40,7 @@ public class AuthorResource {
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response newAuthor(@RequestBody AuthorDtoPartial authorDtoPartial) {
+  public Response newAuthor(AuthorDtoPartial authorDtoPartial) {
     Author author = new Author(
         authorDtoPartial.getFirstName(),
         authorDtoPartial.getLastName());
