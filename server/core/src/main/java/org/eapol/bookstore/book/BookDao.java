@@ -37,7 +37,7 @@ public class BookDao {
         .createQuery(
           "FROM Book book " +
             "JOIN FETCH book.author " +
-            "WHERE book.book_id = :id",
+            "WHERE book.bookId = :id",
           Book.class)
         .setParameter("id", id)
         .getSingleResult();

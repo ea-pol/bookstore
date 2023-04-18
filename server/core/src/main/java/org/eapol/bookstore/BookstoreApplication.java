@@ -2,9 +2,9 @@ package org.eapol.bookstore;
 
 import jakarta.inject.Inject;
 import org.eapol.bookstore.author.Author;
-import org.eapol.bookstore.author.AuthorDao;
+import org.eapol.bookstore.author.AuthorService;
 import org.eapol.bookstore.book.Book;
-import org.eapol.bookstore.book.BookDao;
+import org.eapol.bookstore.book.BookService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,9 +17,9 @@ public class BookstoreApplication implements CommandLineRunner {
   }
 
   @Inject
-  private AuthorDao authorDao;
+  private AuthorService authorService;
   @Inject
-  private BookDao bookDao;
+  private BookService bookService;
 
   @Override
   public void run(String... args) throws Exception {
@@ -55,12 +55,12 @@ public class BookstoreApplication implements CommandLineRunner {
       93L,
       3L);
 
-    authorDao.save(rayBradbury);
-    authorDao.save(leoTolstoy);
+    authorService.save(rayBradbury);
+    authorService.save(leoTolstoy);
 
-    bookDao.save(book1);
-    bookDao.save(book2);
-    bookDao.save(book3);
-    bookDao.save(book4);
+    bookService.save(book1);
+    bookService.save(book2);
+    bookService.save(book3);
+    bookService.save(book4);
   }
 }
