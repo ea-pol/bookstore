@@ -62,6 +62,15 @@ public class BookDao {
       .executeUpdate();
   }
 
+  public void deleteByAuthorId(Long authorId) {
+    session()
+      .createQuery(
+        "DELETE FROM Book book " +
+          "WHERE book.author.authorId = :authorId")
+      .setParameter("authorId", authorId)
+      .executeUpdate();
+  }
+
   private Session session() {
     return sessionFactory.getCurrentSession();
   }

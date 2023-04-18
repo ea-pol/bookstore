@@ -1,6 +1,7 @@
 package org.eapol.bookstore.author;
 
 import jakarta.inject.Inject;
+import org.eapol.bookstore.book.BookDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,10 +11,12 @@ import java.util.Optional;
 @Service
 public class AuthorService {
   private final AuthorDao authorDao;
+  private final BookDao bookDao;
 
   @Inject
-  public AuthorService(AuthorDao authorDao) {
+  public AuthorService(AuthorDao authorDao, BookDao bookDao) {
     this.authorDao = authorDao;
+    this.bookDao = bookDao;
   }
 
   @Transactional
@@ -42,6 +45,7 @@ public class AuthorService {
 
   @Transactional
   public void deleteById(Long id) {
+    bookDao.deleteByAuthorId(id);
     authorDao.deleteById(id);
   }
 }

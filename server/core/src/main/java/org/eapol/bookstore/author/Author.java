@@ -2,7 +2,9 @@ package org.eapol.bookstore.author;
 
 import jakarta.persistence.*;
 import org.eapol.bookstore.book.Book;
+import org.hibernate.annotations.Cascade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,14 +21,14 @@ public class Author {
   @Column(name = "last_name")
   private String lastName;
 
-  @OneToMany(
-    mappedBy = "author",
-    cascade = CascadeType.ALL,
-    orphanRemoval = true
-  )
-  private List<Book> books;
+  @OneToMany(mappedBy = "author", cascade = CascadeType.PERSIST)
+  private List<Book> books = new ArrayList<>();
 
   public Author() {
+  }
+
+  public void addBook(Book book) {
+    this.books.add(book);
   }
 
   public Author(String firstName, String lastName) {

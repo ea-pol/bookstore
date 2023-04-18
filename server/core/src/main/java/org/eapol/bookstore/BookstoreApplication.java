@@ -4,7 +4,6 @@ import jakarta.inject.Inject;
 import org.eapol.bookstore.author.Author;
 import org.eapol.bookstore.author.AuthorService;
 import org.eapol.bookstore.book.Book;
-import org.eapol.bookstore.book.BookService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,8 +17,6 @@ public class BookstoreApplication implements CommandLineRunner {
 
   @Inject
   private AuthorService authorService;
-  @Inject
-  private BookService bookService;
 
   @Override
   public void run(String... args) throws Exception {
@@ -40,6 +37,9 @@ public class BookstoreApplication implements CommandLineRunner {
       42L,
       7L);
 
+    rayBradbury.addBook(book1);
+    rayBradbury.addBook(book2);
+
     Book book3 = new Book(leoTolstoy,
       "Anna Karenina",
       "Happy families are all alike; every unhappy " +
@@ -55,12 +55,10 @@ public class BookstoreApplication implements CommandLineRunner {
       93L,
       3L);
 
+    leoTolstoy.addBook(book3);
+    leoTolstoy.addBook(book4);
+
     authorService.save(rayBradbury);
     authorService.save(leoTolstoy);
-
-    bookService.save(book1);
-    bookService.save(book2);
-    bookService.save(book3);
-    bookService.save(book4);
   }
 }
