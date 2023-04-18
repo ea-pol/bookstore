@@ -30,4 +30,9 @@ public class BookService {
   public Optional<Book> getByIdEager(Long id) {
     return bookDao.getByIdEager(id);
   }
+
+  @Transactional
+  public void deleteById(Long id) {
+    bookDao.deleteById(id);
+  }
 }

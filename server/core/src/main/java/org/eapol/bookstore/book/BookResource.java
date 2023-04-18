@@ -67,7 +67,7 @@ public class BookResource {
   @Path("/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public BookDto updateBook(@PathParam("id") Long id) {
+  public BookDto updateBook(@PathParam("id") Long id, BookDtoPartial bookDtoPartial) {
     // TODO:
     return null;
   }
@@ -75,7 +75,7 @@ public class BookResource {
   @DELETE
   @Path("/{id}")
   public Response deleteBook(@PathParam("id") Long id) {
-    // TODO:
+    bookService.deleteById(id);
     return Response.noContent().build();
   }
 }
