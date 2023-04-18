@@ -62,4 +62,20 @@ public class BookResource {
       .map(BookMapper::toDto)
       .get();
   }
+
+  @PUT
+  @Path("/{id}")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public BookDto updateBook(@PathParam("id") Long id) {
+    // TODO:
+    return null;
+  }
+
+  @DELETE
+  @Path("/{id}")
+  public Response deleteBook(@PathParam("id") Long id) {
+    // TODO:
+    return Response.noContent().build();
+  }
 }
