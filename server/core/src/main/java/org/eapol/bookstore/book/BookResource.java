@@ -68,8 +68,9 @@ public class BookResource {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public BookDto updateBook(@PathParam("id") Long id, BookDtoPartial bookDtoPartial) {
-    // TODO:
-    return null;
+    return bookService.updateBook(id, bookDtoPartial)
+      .map(BookMapper::toDto)
+      .get();
   }
 
   @DELETE

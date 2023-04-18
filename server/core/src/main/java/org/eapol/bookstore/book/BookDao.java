@@ -48,6 +48,11 @@ public class BookDao {
     }
   }
 
+  public Optional<Book> getById(Long id) {
+    return Optional.ofNullable(
+      session().get(Book.class, id));
+  }
+
   public void deleteById(Long id) {
     session()
       .createQuery(
