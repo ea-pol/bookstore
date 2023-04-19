@@ -7,11 +7,7 @@ import jakarta.ws.rs.core.Response;
 import org.eapol.bookstore.author.AuthorService;
 import org.eapol.bookstore.book.dto.BookDto;
 import org.eapol.bookstore.book.dto.BookDtoPartial;
-
-import org.eapol.bookstore.author.Author;
-
 import java.util.List;
-import java.util.Optional;
 
 @Path("/api/books")
 public class BookResource {
@@ -29,11 +25,13 @@ public class BookResource {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public List<BookDto> books() {
-    return bookService.getAll()
-      .stream()
-      .map(BookMapper::toDto)
-      .toList();
+  public Response books() {
+    return Response
+      .ok(bookService.getAll()
+        .stream()
+        .map(BookMapper::toDto)
+        .toList())
+      .build();
   }
 
   @POST
@@ -46,20 +44,20 @@ public class BookResource {
   @GET
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public BookDto book(@PathParam("id") Long id) {
-    return bookService.getByIdEager(id)
-      .map(BookMapper::toDto)
-      .get();
+  public Response book(@PathParam("id") Long id) {
+    return Response
+      .ok(BookMapper.toDto(bookService.getByIdEager(id)))
+      .build();
   }
 
   @PUT
   @Path("/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public BookDto updateBook(@PathParam("id") Long id, BookDtoPartial bookDtoPartial) {
-    return bookService.updateBook(id, bookDtoPartial)
-      .map(BookMapper::toDto)
-      .get();
+  public Response updateBook(@PathParam("id") Long id, BookDtoPartial bookDtoPartial) {
+    return Response
+      .ok(BookMapper.toDto(bookService.updateBook(id, bookDtoPartial)))
+      .build();
   }
 
   @DELETE

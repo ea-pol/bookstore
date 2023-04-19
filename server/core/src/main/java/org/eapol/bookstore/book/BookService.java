@@ -45,26 +45,35 @@ public class BookService {
   }
 
   @Transactional(readOnly = true)
-  public Optional<Book> getByIdEager(Long id) {
-    return bookDao.getByIdEager(id);
+  public Book getByIdEager(Long id) {
+    return bookDao
+      .getByIdEager(id)
+      .orElseThrow(() -> new NotFoundException(Book.class, id));
   }
 
   @Transactional(readOnly = true)
-  public Optional<Book> getById(Long id) {
-    return bookDao.getById(id);
+  public Book getById(Long id) {
+    return bookDao
+      .getById(id)
+      .orElseThrow(() -> new NotFoundException(Book.class, id));
   }
 
   @Transactional
-  public Optional<Book> updateBook(Long id, BookDtoPartial bookDtoPartial) {
-    return getById(id).map(book -> {
-      Author author = authorDao.getById(bookDtoPartial.getAuthorId()).get();
+  public Book updateBook(Long id, BookDtoPartial bookDtoPartial) {
+    Long authorId = bookDtoPartial.getAuthorId();
+
+    Author author = authorDao
+      .getById(authorId)
+      .orElseThrow(() -> new NotFoundException(Author.class, authorId));
+
+    return bookDao.getById(id).map(book -> {
       book.setAuthor(author);
       book.setTitle(bookDtoPartial.getTitle());
       book.setFirstSentence(bookDtoPartial.getFirstSentence());
       book.setAmount(bookDtoPartial.getAmount());
       book.setPrice(bookDtoPartial.getPrice());
       return book;
-    });
+    }).orElseThrow(() -> new NotFoundException(Book.class, id));
   }
 
   @Transactional
