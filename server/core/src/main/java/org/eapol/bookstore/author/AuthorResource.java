@@ -11,11 +11,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.eapol.bookstore.author.dto.AuthorDto;
 import org.eapol.bookstore.author.dto.AuthorDtoPartial;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.List;
 
 // TODO: handle exception in case of errors
 // TODO: validate request data
@@ -31,51 +27,45 @@ public class AuthorResource {
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public List<AuthorDto> authors() {
-    return authorService.getAll()
+  public Response getAllAuthors() {
+    return Response
+      .ok(authorService.getAll()
         .stream()
         .map(AuthorMapper::toDto)
-        .toList();
+        .toList())
+      .build();
   }
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response newAuthor(AuthorDtoPartial authorDtoPartial) {
-    Author author = new Author(
-        authorDtoPartial.getFirstName(),
-        authorDtoPartial.getLastName());
-
-    authorService.save(author);
-
+  public Response createNewAuthor(AuthorDtoPartial authorDtoPartial) {
+    authorService.save(AuthorMapper.fromDto(authorDtoPartial));
     return Response.noContent().build();
   }
 
   @GET
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
-  public AuthorDto author(@PathParam("id") Long id) {
-    return authorService.getById(id)
-        .map(AuthorMapper::toDto)
-        .get();
+  public Response getAuthorById(@PathParam("id") Long id) {
+    return Response
+      .ok(authorService.getById(id).map(AuthorMapper::toDto).get())
+      .build();
   }
 
   @PUT
   @Path("/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public AuthorDto update(
-      @PathParam("id") Long id,
-      @RequestBody AuthorDtoPartial authorDtoPartial
-  ) {
-    return AuthorMapper.toDto(
-        authorService.update(id,
-            authorDtoPartial.getFirstName(),
-            authorDtoPartial.getLastName()));
+  public Response updateAuthor(@PathParam("id") Long id, AuthorDtoPartial authorDtoPartial) {
+    return Response
+      .ok(AuthorMapper.toDto(
+        authorService.update(id, authorDtoPartial)))
+      .build();
   }
 
   @DELETE
   @Path("/{id}")
-  public Response deleteById(@PathParam("id") Long id) {
+  public Response deleteAuthorById(@PathParam("id") Long id) {
     authorService.deleteById(id);
     return Response.noContent().build();
   }

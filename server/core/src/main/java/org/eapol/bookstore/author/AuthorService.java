@@ -1,6 +1,7 @@
 package org.eapol.bookstore.author;
 
 import jakarta.inject.Inject;
+import org.eapol.bookstore.author.dto.AuthorDtoPartial;
 import org.eapol.bookstore.book.BookDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,10 +36,10 @@ public class AuthorService {
   }
 
   @Transactional
-  public Author update(Long id, String firstName, String lastName) {
+  public Author update(Long id, AuthorDtoPartial authorDtoPartial) {
     return getById(id).map(author -> {
-      author.setFirstName(firstName);
-      author.setLastName(lastName);
+      author.setFirstName(author.getFirstName());
+      author.setLastName(author.getLastName());
       return author;
     }).get();
   }
