@@ -1,17 +1,17 @@
 package org.eapol.bookstore.exception;
 
 public class Error {
-  private String message;
+  private String error;
 
-  public Error(String message) {
-    this.message = message;
+  public Error(String error) {
+    this.error = error;
   }
 
-  public String getMessage() {
-    return message;
+  public String getError() {
+    return error;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setError(String error) {
+    this.error = error;
   }
 }

@@ -10,7 +10,7 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
     return Response
       .status(Response.Status.NOT_FOUND)
       .entity(new Error(exception.getMessage()))
-      .type(MediaType.TEXT_PLAIN)
+      .type(MediaType.APPLICATION_JSON)
       .build();
   }
 }
