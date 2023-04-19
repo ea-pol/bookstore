@@ -19,20 +19,20 @@ import java.util.Properties;
 public class HibernateConfig {
 
   @Value("${database.url}")
-  private String databaseUrl;
+  private String DATABASE_URL;
 
   @Value("${database.username}")
-  private String databaseUsername;
+  private String DATABASE_USERNAME;
 
   @Value("${database.password}")
-  private String databasePassword;
+  private String DATABASE_PASSWORD;
 
   @Value("${hibernate.hbm2ddl.auto}")
-  private String hbm2ddlAuto;
+  private String HBM2DDL_AUTO;
 
   @Bean
   public DataSource dataSource() {
-    return new DriverManagerDataSource(databaseUrl, databaseUsername, databasePassword);
+    return new DriverManagerDataSource(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
   }
 
   @Bean
@@ -60,7 +60,7 @@ public class HibernateConfig {
     Properties hibernateProperties = new Properties();
 
     hibernateProperties.put(Environment.DIALECT, PostgreSQLDialect.class.getName());
-    hibernateProperties.put(Environment.HBM2DDL_AUTO, hbm2ddlAuto);
+    hibernateProperties.put(Environment.HBM2DDL_AUTO, HBM2DDL_AUTO);
 
     return hibernateProperties;
   }
