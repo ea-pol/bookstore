@@ -58,8 +58,7 @@ public class AuthorResource {
   @Produces(MediaType.APPLICATION_JSON)
   public Response updateAuthor(@PathParam("id") Long id, AuthorDtoPartial authorDtoPartial) {
     return Response
-      .ok(AuthorMapper.toDto(
-        authorService.update(id, authorDtoPartial)))
+      .ok(AuthorMapper.toDto(authorService.update(id, authorDtoPartial)))
       .build();
   }
 

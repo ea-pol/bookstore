@@ -38,8 +38,8 @@ public class AuthorService {
   @Transactional
   public Author update(Long id, AuthorDtoPartial authorDtoPartial) {
     return getById(id).map(author -> {
-      author.setFirstName(author.getFirstName());
-      author.setLastName(author.getLastName());
+      author.setFirstName(authorDtoPartial.getFirstName());
+      author.setLastName(authorDtoPartial.getLastName());
       return author;
     }).get();
   }
