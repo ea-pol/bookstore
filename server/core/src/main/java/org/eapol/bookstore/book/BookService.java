@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import org.eapol.bookstore.author.AuthorDao;
 import org.eapol.bookstore.author.Author;
 import org.eapol.bookstore.book.dto.BookDtoPartial;
+import org.eapol.bookstore.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +28,19 @@ public class BookService {
   }
 
   @Transactional
-  public void save(Book book) {
+  public void save(BookDtoPartial bookDtoPartial) {
+    Long authorId = bookDtoPartial.getAuthorId();
+
+    Author author = authorDao
+      .getById(authorId)
+      .orElseThrow(() -> new NotFoundException(Author.class, authorId));
+
+    Book book = new Book(author,
+      bookDtoPartial.getTitle(),
+      bookDtoPartial.getFirstSentence(),
+      bookDtoPartial.getPrice(),
+      bookDtoPartial.getAmount());
+
     bookDao.save(book);
   }
 

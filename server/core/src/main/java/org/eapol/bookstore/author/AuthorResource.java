@@ -48,7 +48,7 @@ public class AuthorResource {
   @Produces(MediaType.APPLICATION_JSON)
   public Response getAuthorById(@PathParam("id") Long id) {
     return Response
-      .ok(authorService.getById(id).map(AuthorMapper::toDto).get())
+      .ok(AuthorMapper.toDto(authorService.getById(id)))
       .build();
   }
 

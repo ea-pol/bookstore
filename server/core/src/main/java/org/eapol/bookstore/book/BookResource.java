@@ -39,18 +39,7 @@ public class BookResource {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   public Response save(BookDtoPartial bookDtoPartial) {
-    Optional<Author> optionalAuthor = authorService.getById(bookDtoPartial.getAuthorId());
-
-    optionalAuthor.ifPresent(author -> {
-      Book book = new Book(author,
-        bookDtoPartial.getTitle(),
-        bookDtoPartial.getFirstSentence(),
-        bookDtoPartial.getPrice(),
-        bookDtoPartial.getAmount());
-
-      bookService.save(book);
-    });
-
+    bookService.save(bookDtoPartial);
     return Response.noContent().build();
   }
 
