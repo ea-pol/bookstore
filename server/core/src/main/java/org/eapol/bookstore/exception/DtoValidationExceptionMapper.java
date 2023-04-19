@@ -10,7 +10,7 @@ public class DtoValidationExceptionMapper
   @Override
   public Response toResponse(DtoValidationException exception) {
     return Response
-      .status(Response.Status.NOT_FOUND)
+      .status(Response.Status.BAD_REQUEST)
       .entity(new Error(exception.getMessage()))
       .type(MediaType.APPLICATION_JSON)
       .build();

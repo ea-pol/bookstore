@@ -38,9 +38,10 @@ public class AuthorResource {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   public Response createNewAuthor(AuthorDtoPartial authorDtoPartial) {
+    /*
     if (!AuthorDtoValidator.isValidDto(authorDtoPartial)) {
       throw new DtoValidationException();
-    }
+    } */
 
     authorService.save(AuthorMapper.fromDto(authorDtoPartial));
     return Response.noContent().build();
