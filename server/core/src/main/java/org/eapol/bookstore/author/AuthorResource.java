@@ -1,6 +1,7 @@
 package org.eapol.bookstore.author;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -12,8 +13,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eapol.bookstore.author.dto.AuthorDtoPartial;
-import org.eapol.bookstore.author.dto.AuthorDtoValidator;
-import org.eapol.bookstore.exception.DtoValidationException;
 
 @Path("/api/authors")
 public class AuthorResource {
@@ -37,12 +36,7 @@ public class AuthorResource {
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response createNewAuthor(AuthorDtoPartial authorDtoPartial) {
-    /*
-    if (!AuthorDtoValidator.isValidDto(authorDtoPartial)) {
-      throw new DtoValidationException();
-    } */
-
+  public Response createNewAuthor(@Valid AuthorDtoPartial authorDtoPartial) {
     authorService.save(AuthorMapper.fromDto(authorDtoPartial));
     return Response.noContent().build();
   }
@@ -60,11 +54,7 @@ public class AuthorResource {
   @Path("/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response updateAuthor(@PathParam("id") Long id, AuthorDtoPartial authorDtoPartial) {
-    if (!AuthorDtoValidator.isValidDto(authorDtoPartial)) {
-      throw new DtoValidationException();
-    }
-
+  public Response updateAuthor(@PathParam("id") Long id, @Valid AuthorDtoPartial authorDtoPartial) {
     return Response
       .ok(AuthorMapper.toDto(authorService.update(id, authorDtoPartial)))
       .build();

@@ -4,8 +4,6 @@ import org.eapol.bookstore.StatusResource;
 import org.eapol.bookstore.author.AuthorResource;
 
 import org.eapol.bookstore.book.BookResource;
-import org.eapol.bookstore.exception.DtoValidationException;
-import org.eapol.bookstore.exception.DtoValidationExceptionMapper;
 import org.eapol.bookstore.exception.NotFoundExceptionMapper;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Bean;

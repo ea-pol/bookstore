@@ -12,8 +12,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eapol.bookstore.book.dto.BookDtoPartial;
-import org.eapol.bookstore.book.dto.BookDtoValidator;
-import org.eapol.bookstore.exception.DtoValidationException;
 
 @Path("/api/books")
 public class BookResource {
@@ -38,10 +36,6 @@ public class BookResource {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   public Response save(BookDtoPartial bookDtoPartial) {
-    if (!BookDtoValidator.isValidDto(bookDtoPartial)) {
-      throw new DtoValidationException();
-    }
-
     bookService.save(bookDtoPartial);
     return Response.noContent().build();
   }
@@ -60,10 +54,6 @@ public class BookResource {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Response updateBook(@PathParam("id") Long id, BookDtoPartial bookDtoPartial) {
-    if (!BookDtoValidator.isValidDto(bookDtoPartial)) {
-      throw new DtoValidationException();
-    }
-
     return Response
       .ok(BookMapper.toDto(bookService.updateBook(id, bookDtoPartial)))
       .build();
