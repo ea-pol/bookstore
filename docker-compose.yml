@@ -5,8 +5,10 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_DB=bookstore
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./server/postgres:/docker-entrypoint-initdb.d
 
   core_service:
     build: ./server/core
