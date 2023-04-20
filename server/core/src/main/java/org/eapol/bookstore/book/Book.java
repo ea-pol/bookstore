@@ -15,7 +15,7 @@ import org.eapol.bookstore.author.Author;
 @Table(name = "book")
 public class Book {
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "book_id")
   private Long bookId;
 
