@@ -11,7 +11,7 @@ public class ConstraintViolationExceptionMapper
   public Response toResponse(ConstraintViolationException exception) {
     return Response
       .status(Response.Status.BAD_REQUEST)
-      .entity(new Error("specified parameters are invalid."))
+      .entity(new Error("provided request body is invalid."))
       .type(MediaType.APPLICATION_JSON)
       .build();
   }
