@@ -6,6 +6,7 @@ import org.eapol.bookstore.author.AuthorResource;
 import org.eapol.bookstore.book.BookResource;
 import org.eapol.bookstore.exception.ConstraintViolationExceptionMapper;
 import org.eapol.bookstore.exception.JsonProcessingExceptionMapper;
+import org.eapol.bookstore.exception.MethodNotAllowedExceptionMapper;
 import org.eapol.bookstore.exception.NotFoundExceptionMapper;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -26,6 +27,7 @@ public class JerseyConfig {
     config.register(ConstraintViolationExceptionMapper.class);
     config.register(JsonProcessingExceptionMapper.class);
     config.register(JacksonJaxbJsonProvider.class);
+    config.register(MethodNotAllowedExceptionMapper.class);
 
     return config;
   }
