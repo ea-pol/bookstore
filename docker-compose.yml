@@ -1,0 +1,17 @@
+services:
+  database:
+    image: postgres:alpine
+    container_name: bookstore_db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=bookstore
+      - POSTGRES_PASSWORD=postgres
+
+  core_service:
+    build: ./server/core
+    container_name: bookstore_core
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
