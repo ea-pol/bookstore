@@ -1,14 +1,23 @@
 package org.eapol.bookstore.book.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public abstract class AbstractBookDto {
+  @NotBlank
   @JsonProperty("title")
   private String title;
+
+  @NotBlank
   @JsonProperty("first_sentence")
   private String firstSentence;
+
+  @NotNull
   @JsonProperty("price")
   private Long price;
+
+  @NotNull
   @JsonProperty("amount")
   private Long amount;
 

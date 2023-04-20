@@ -1,8 +1,10 @@
 package org.eapol.bookstore.book.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 
 public class BookDtoPartial extends AbstractBookDto {
+  @NotNull
   @JsonProperty("author_id")
   private Long authorId;
 

@@ -20,7 +20,6 @@ public class JerseyConfig {
     config.register(BookResource.class);
 
     config.register(NotFoundExceptionMapper.class);
-    config.register(DtoValidationExceptionMapper.class);
 
     return config;
   }

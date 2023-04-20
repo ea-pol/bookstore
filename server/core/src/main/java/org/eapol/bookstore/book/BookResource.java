@@ -1,6 +1,7 @@
 package org.eapol.bookstore.book;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -35,7 +36,7 @@ public class BookResource {
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response save(BookDtoPartial bookDtoPartial) {
+  public Response save(@Valid BookDtoPartial bookDtoPartial) {
     bookService.save(bookDtoPartial);
     return Response.noContent().build();
   }
@@ -53,7 +54,7 @@ public class BookResource {
   @Path("/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response updateBook(@PathParam("id") Long id, BookDtoPartial bookDtoPartial) {
+  public Response updateBook(@PathParam("id") Long id, @Valid BookDtoPartial bookDtoPartial) {
     return Response
       .ok(BookMapper.toDto(bookService.updateBook(id, bookDtoPartial)))
       .build();
