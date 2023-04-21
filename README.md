@@ -15,7 +15,7 @@ A simple web app that allows you to store information about books and their auth
 - api/authors (GET, POST)
 - api/authors/{id} (GET, PUT, DELETE)
 - api/books (GET, POST)
-- api/books (GET, PUT, DELETE)
+- api/books/{id} (GET, PUT, DELETE)
 - api/sentences-stats (GET)
 
 ### Schemas
