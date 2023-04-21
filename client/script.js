@@ -2,16 +2,19 @@ function fetchAuthors() {
   var authors = [];
 
   var author1 = {
+    id: 1,
     firstName: "Ray",
     lastName: "Bradbury"
   };
 
   var author2 = {
+    id: 2,
     firstName: "Leo",
     lastName: "Tolstoy"
   };
 
   var author3 = {
+    id: 3,
     firstName: "Thomas",
     lastName: "Anderson"
   }
@@ -31,7 +34,11 @@ function displayAuthors() {
     var authorFullName = authors[i].firstName + " " + authors[i].lastName;
     var textNode = document.createTextNode(authorFullName);
     var listItem = document.createElement("li");
+
+    listItem.addEventListener("click", removeAuthor);
+    listItem.setAttribute("data-author-id", authors[i].id);
     listItem.appendChild(textNode);
+
     authorsList.appendChild(listItem);
   }
 }
@@ -41,11 +48,21 @@ function addNewAuthor() {
   var authorLastName = document.getElementById("author-last-name").value;
 
   var author = {
+    id: currentAuthorId,
     firstName: authorFirstName,
     lastName: authorLastName
   };
 
+  currentAuthorId += 1;
+
   authors.push(author);
+  displayAuthors();
+}
+
+function removeAuthor(event) {
+  var authorToRemoveId = event.currentTarget.dataset.authorId;
+  console.log("Removing author with id = " + authorToRemoveId);
+  authors = authors.filter(author => author.id != authorToRemoveId);
   displayAuthors();
 }
 
@@ -90,6 +107,7 @@ function initEventListeners() {
   });
 }
 
+currentAuthorId = 4;
 authors = fetchAuthors();
 initEventListeners();
 document.getElementById("tabbooks").click();
