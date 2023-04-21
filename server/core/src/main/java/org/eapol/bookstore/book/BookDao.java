@@ -71,6 +71,12 @@ public class BookDao {
       .executeUpdate();
   }
 
+  public List<String> getAllSentences() {
+    return session()
+      .createQuery("SELECT firstSentence FROM Book", String.class)
+      .getResultList();
+  }
+
   private Session session() {
     return sessionFactory.getCurrentSession();
   }

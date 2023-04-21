@@ -1,4 +1,4 @@
-package org.eapol.sentenceanalyzer.sentence;
+package org.eapol.sentenceanalyzer.analyzer;
 
 public class WordStats {
   private String word;

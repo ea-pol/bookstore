@@ -1,6 +1,6 @@
 package org.eapol.sentenceanalyzer.config;
 
-import org.eapol.sentenceanalyzer.SentenceAnalyzerController;
+import org.eapol.sentenceanalyzer.analyzer.SentenceAnalyzerController;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

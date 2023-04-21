@@ -80,4 +80,9 @@ public class BookService {
   public void deleteById(Long id) {
     bookDao.deleteById(id);
   }
+
+  @Transactional(readOnly = true)
+  public List<String> getAllSentences() {
+    return bookDao.getAllSentences();
+  }
 }
