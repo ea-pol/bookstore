@@ -32,12 +32,11 @@ function displayAuthors() {
 
   for (i = 0; i < authors.length; i++) {
     var authorFullName = authors[i].firstName + " " + authors[i].lastName;
-    var textNode = document.createTextNode(authorFullName);
-    var listItem = document.createElement("li");
+    var listItem = document.createElement("div");
 
+    listItem.innerHTML += authorFullName;
     listItem.addEventListener("click", removeAuthor);
     listItem.setAttribute("data-author-id", authors[i].id);
-    listItem.appendChild(textNode);
 
     authorsList.appendChild(listItem);
   }
@@ -55,7 +54,7 @@ function addNewAuthor() {
 
   currentAuthorId += 1;
   authors.push(author);
-  
+
   displayAuthors();
 }
 
