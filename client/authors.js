@@ -32,11 +32,18 @@ function displayAuthors() {
 
   for (i = 0; i < authors.length; i++) {
     var authorFullName = authors[i].firstName + " " + authors[i].lastName;
-    var listItem = document.createElement("div");
 
-    listItem.innerHTML += authorFullName;
-    listItem.addEventListener("click", removeAuthor);
-    listItem.setAttribute("data-author-id", authors[i].id);
+    var author = document.createElement("div");
+    author.innerHTML += authorFullName;
+    
+    var removeButton = document.createElement("div");
+    removeButton.innerHTML += "X"
+    removeButton.addEventListener("click", removeAuthor);
+    removeButton.setAttribute("data-author-id", authors[i].id);
+
+    var listItem = document.createElement("div");
+    listItem.appendChild(author);
+    listItem.appendChild(removeButton);
 
     authorsList.appendChild(listItem);
   }
