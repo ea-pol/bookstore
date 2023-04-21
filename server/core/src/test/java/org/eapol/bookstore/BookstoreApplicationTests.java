@@ -3,24 +3,37 @@ package org.eapol.bookstore;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import org.awaitility.Awaitility;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.hamcrest.core.IsEqual;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class BookstoreApplicationTests {
   private static final OkHttpClient client = new OkHttpClient();
   private static final String HOST = "http://localhost:8080";
 
-  @Test
-  public void dummyTest() {
-    assertTrue(true);
+  @BeforeAll
+  public static void runServer() {
+    runAndWaitServer();
   }
 
   @Test
-  public void testStatusResource() throws IOException, InterruptedException {
+  public void testStatusResource() throws IOException {
+    Request request = new Request.Builder()
+      .url(HOST + "/api/status")
+      .build();
+
+    Response response = client.newCall(request).execute();
+    assertEquals(response.code(), 200);
+  }
+
+  private static void runAndWaitServer() {
     Thread thread = new Thread(() -> {
       try {
         BookstoreApplication.main(new String[]{});
@@ -31,15 +44,23 @@ public class BookstoreApplicationTests {
 
     thread.start();
 
-    Thread.sleep(10_000);
+    Awaitility.await()
+      .atMost(10, TimeUnit.SECONDS)
+      .pollInterval(500, TimeUnit.MILLISECONDS)
+      .until(BookstoreApplicationTests::isServerUp, IsEqual.equalTo(true));
+  }
 
-    Request request = new Request.Builder()
-      .url(HOST + "/api/status")
-      .build();
+  private static boolean isServerUp() {
+    try {
+      Request request = new Request.Builder()
+        .url(HOST + "/api/status")
+        .build();
 
-    Response response = client.newCall(request).execute();
-    System.out.println(response.code());
+      Response response = client.newCall(request).execute();
 
-    assertEquals(response.code(), 200);
+      return response.code() == 200;
+    } catch (Exception e) {
+      return false;
+    }
   }
 }
