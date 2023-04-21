@@ -1,4 +1,4 @@
-package org.eapol.sentenceanalyzer.analyzer;
+package org.eapol.sentenceanalyzer.analyzer.dto;
 
 public class Sentence {
   private String sentence;

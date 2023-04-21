@@ -6,6 +6,8 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eapol.sentenceanalyzer.analyzer.dto.Sentence;
+import org.eapol.sentenceanalyzer.analyzer.dto.WordStats;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,7 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
 @Path("/api")
-public class SentenceAnalyzerController {
+public class AnalyzerResource {
   private static final int TOP_WORDS_LIMIT = 5;
 
   @POST
@@ -31,6 +33,7 @@ public class SentenceAnalyzerController {
       .map(sentence -> sentence.split("[^a-zA-Z0-9]"))
       .flatMap(Arrays::stream)
       .filter(word -> !word.isBlank())
+      .map(String::toLowerCase)
       .collect(groupingBy(identity(), counting()))
       .entrySet()
       .stream()
