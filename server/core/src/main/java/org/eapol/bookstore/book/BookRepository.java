@@ -10,11 +10,11 @@ import java.util.Optional;
 import java.util.List;
 
 @Repository
-public class BookDao {
+public class BookRepository {
   private final SessionFactory sessionFactory;
 
   @Inject
-  public BookDao(SessionFactory sessionFactory) {
+  public BookRepository(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
   }
 
@@ -69,6 +69,12 @@ public class BookDao {
           "WHERE book.author.authorId = :authorId")
       .setParameter("authorId", authorId)
       .executeUpdate();
+  }
+
+  public List<String> getAllSentences() {
+    return session()
+      .createQuery("SELECT firstSentence FROM Book", String.class)
+      .getResultList();
   }
 
   private Session session() {
