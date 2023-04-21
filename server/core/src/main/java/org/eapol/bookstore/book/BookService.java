@@ -1,7 +1,7 @@
 package org.eapol.bookstore.book;
 
 import jakarta.inject.Inject;
-import org.eapol.bookstore.author.AuthorDao;
+import org.eapol.bookstore.author.AuthorRepository;
 import org.eapol.bookstore.author.Author;
 import org.eapol.bookstore.book.dto.BookDtoPartial;
 import org.eapol.bookstore.exception.NotFoundException;
@@ -9,29 +9,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookService {
-  private final BookDao bookDao;
-  private final AuthorDao authorDao;
+  private final BookRepository bookRepository;
+  private final AuthorRepository authorRepository;
 
   @Inject
-  public BookService(BookDao bookDao, AuthorDao authorDao) {
-    this.bookDao = bookDao;
-    this.authorDao = authorDao;
+  public BookService(BookRepository bookRepository, AuthorRepository authorRepository) {
+    this.bookRepository = bookRepository;
+    this.authorRepository = authorRepository;
   }
 
   @Transactional(readOnly = true)
   public List<Book> getAll() {
-    return bookDao.getAll();
+    return bookRepository.getAll();
   }
 
   @Transactional
   public void save(BookDtoPartial bookDtoPartial) {
     Long authorId = bookDtoPartial.getAuthorId();
 
-    Author author = authorDao
+    Author author = authorRepository
       .getById(authorId)
       .orElseThrow(() -> new NotFoundException(Author.class, authorId));
 
@@ -41,19 +40,19 @@ public class BookService {
       bookDtoPartial.getPrice(),
       bookDtoPartial.getAmount());
 
-    bookDao.save(book);
+    bookRepository.save(book);
   }
 
   @Transactional(readOnly = true)
   public Book getByIdEager(Long id) {
-    return bookDao
+    return bookRepository
       .getByIdEager(id)
       .orElseThrow(() -> new NotFoundException(Book.class, id));
   }
 
   @Transactional(readOnly = true)
   public Book getById(Long id) {
-    return bookDao
+    return bookRepository
       .getById(id)
       .orElseThrow(() -> new NotFoundException(Book.class, id));
   }
@@ -62,11 +61,11 @@ public class BookService {
   public Book updateBook(Long id, BookDtoPartial bookDtoPartial) {
     Long authorId = bookDtoPartial.getAuthorId();
 
-    Author author = authorDao
+    Author author = authorRepository
       .getById(authorId)
       .orElseThrow(() -> new NotFoundException(Author.class, authorId));
 
-    return bookDao.getById(id).map(book -> {
+    return bookRepository.getById(id).map(book -> {
       book.setAuthor(author);
       book.setTitle(bookDtoPartial.getTitle());
       book.setFirstSentence(bookDtoPartial.getFirstSentence());
@@ -78,11 +77,11 @@ public class BookService {
 
   @Transactional
   public void deleteById(Long id) {
-    bookDao.deleteById(id);
+    bookRepository.deleteById(id);
   }
 
   @Transactional(readOnly = true)
   public List<String> getAllSentences() {
-    return bookDao.getAllSentences();
+    return bookRepository.getAllSentences();
   }
 }

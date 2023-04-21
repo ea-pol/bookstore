@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class AuthorDao {
+public class AuthorRepository {
   private final SessionFactory sessionFactory;
 
   @Inject
-  public AuthorDao(SessionFactory sessionFactory) {
+  public AuthorRepository(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
   }
 

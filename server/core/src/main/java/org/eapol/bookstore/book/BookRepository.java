@@ -10,11 +10,11 @@ import java.util.Optional;
 import java.util.List;
 
 @Repository
-public class BookDao {
+public class BookRepository {
   private final SessionFactory sessionFactory;
 
   @Inject
-  public BookDao(SessionFactory sessionFactory) {
+  public BookRepository(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
   }
 

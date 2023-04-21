@@ -1,4 +1,4 @@
-package org.eapol.bookstore.stats;
+package org.eapol.bookstore.stats.dto;
 
 public class Sentence {
   private String sentence;

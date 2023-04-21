@@ -8,7 +8,7 @@ import org.eapol.bookstore.exception.ConstraintViolationExceptionMapper;
 import org.eapol.bookstore.exception.JsonProcessingExceptionMapper;
 import org.eapol.bookstore.exception.MethodNotAllowedExceptionMapper;
 import org.eapol.bookstore.exception.NotFoundExceptionMapper;
-import org.eapol.bookstore.stats.SentencesStatsResource;
+import org.eapol.bookstore.stats.StatsResource;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +23,7 @@ public class JerseyConfig {
     config.register(StatusResource.class);
     config.register(AuthorResource.class);
     config.register(BookResource.class);
-    config.register(SentencesStatsResource.class);
+    config.register(StatsResource.class);
 
     config.register(NotFoundExceptionMapper.class);
     config.register(ConstraintViolationExceptionMapper.class);
