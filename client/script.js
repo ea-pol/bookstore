@@ -1,4 +1,4 @@
-function openTab(evt, cityName) {
+function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
 
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -11,8 +11,23 @@ function openTab(evt, cityName) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
-  document.getElementById(cityName).style.display = "block";
+  document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
 
-document.getElementById("defaultOpen").click();
+tabbooks = document.getElementById('tabbooks');
+tabbooks.addEventListener('click', (event) => {
+  openTab(event, 'books');
+});
+
+tabauthors = document.getElementById('tabauthors');
+tabauthors.addEventListener('click', (event) => {
+  openTab(event, 'authors');
+});
+
+tabstats = document.getElementById('tabstats');
+tabstats.addEventListener('click', (event) => {
+  openTab(event, 'stats');
+});
+
+document.getElementById('tabbooks').click();
