@@ -104,7 +104,7 @@ function addNewBook() {
     firstSentence: bookFirstSentence,
     price: bookPrice,
     amount: bookAmount
-  }
+  };
 
   currentBookId += 1;
   books.push(book);

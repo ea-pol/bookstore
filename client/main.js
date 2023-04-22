@@ -41,6 +41,7 @@ function initEventListeners() {
   tabstats = document.getElementById("tabstats");
   tabstats.addEventListener("click", (event) => {
     openTab(event, "stats");
+    displayStats();
   });
 }
 
@@ -49,6 +50,8 @@ authors = fetchAuthors();
 
 currentBookId = 5;
 books = fetchBooks();
+
+var stats = fetchStats();
 
 initEventListeners();
 document.getElementById("tabauthors").click();
