@@ -41,11 +41,11 @@ function displayAuthors() {
     removeButton.addEventListener("click", removeAuthor);
     removeButton.setAttribute("data-author-id", authors[i].id);
 
-    var listItem = document.createElement("div");
-    listItem.appendChild(author);
-    listItem.appendChild(removeButton);
+    var authorsListItem = document.createElement("div");
+    authorsListItem.appendChild(author);
+    authorsListItem.appendChild(removeButton);
 
-    authorsList.appendChild(listItem);
+    authorsList.appendChild(authorsListItem);
   }
 }
 
@@ -68,6 +68,5 @@ function addNewAuthor() {
 function removeAuthor(event) {
   var authorToRemoveId = event.currentTarget.dataset.authorId;
   authors = authors.filter(author => author.id != authorToRemoveId);
-
   displayAuthors();
 }

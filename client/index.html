@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="books.js" defer></script>
   <script src="authors.js" defer></script>
   <script src="main.js" defer></script>
   <link rel="stylesheet" href="styles.css" />
@@ -11,14 +12,9 @@
 <h1>Bookstore</h1>
 
 <div class="tab">
-  <button id="tabbooks" class="tablinks">Books</button>
   <button id="tabauthors" class="tablinks">Authors</button>
+  <button id="tabbooks" class="tablinks">Books</button>
   <button id="tabstats" class="tablinks">Stats</button>
-</div>
-
-<div id="books" class="tabcontent">
-  <h3>Books</h3>
-  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur magnam quaerat corporis iste. Asperiores dignissimos blanditiis impedit, facere cupiditate vero similique fugit numquam itaque soluta repellendus voluptas explicabo odit temporibus!</p>
 </div>
 
 <div id="authors" class="tabcontent">
@@ -28,9 +24,42 @@
   </div>
 
   <div>
-    <input id="author-first-name" type="text" placeholder="First name.."><br>
-    <input id="author-last-name" type="text" placeholder="Last name.."><br>
+    <input id="author-first-name" type="text" placeholder="First name..">
+    <br>
+
+    <input id="author-last-name" type="text" placeholder="Last name..">
+    <br>
+
     <button id="add-author" type="submit">Add author</button>
+  </div>
+</div>
+
+<div id="books" class="tabcontent">
+  <div>
+    <h3>Books</h3>
+    <div id="books-list"></div>
+  </div>
+
+  <div>
+    <select id="author-selector">
+      <option value="author-1">Ray Bradbury</option>
+      <option value="author-2">Leo Tolstoy</option>
+    </select>
+    <br>
+
+    <input id="book-title" type="text" placeholder="Title..">
+    <br>
+
+    <input id="book-first-sentence" type="text" placeholder="First sentence..">
+    <br>
+
+    <input id="book-price" type="text" placeholder="Price..">
+    <br>
+
+    <input id="book-amount" type="text" placeholder="Amount..">
+    <br>
+
+    <button id="add-book" type="submit">Add book</button>
   </div>
 </div>
 

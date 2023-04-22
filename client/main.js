@@ -20,7 +20,12 @@ function initEventListeners() {
   tabbooks = document.getElementById("tabbooks");
   tabbooks.addEventListener("click", (event) => {
     openTab(event, "books");
+    displayBooks();
+    updateAuthorSelector();
   });
+
+  addBookButton = document.getElementById("add-book");
+  addBookButton.addEventListener("click", addNewBook);
   
   /* Authors */
   tabauthors = document.getElementById("tabauthors");
@@ -31,7 +36,7 @@ function initEventListeners() {
 
   addAuthorButton = document.getElementById("add-author");
   addAuthorButton.addEventListener("click", addNewAuthor);
-  
+
   /* Stats */
   tabstats = document.getElementById("tabstats");
   tabstats.addEventListener("click", (event) => {
@@ -42,5 +47,8 @@ function initEventListeners() {
 currentAuthorId = 4;
 authors = fetchAuthors();
 
+currentBookId = 5;
+books = fetchBooks();
+
 initEventListeners();
-document.getElementById("tabbooks").click();
+document.getElementById("tabauthors").click();
