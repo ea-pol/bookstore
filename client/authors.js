@@ -35,15 +35,18 @@ function displayAuthors() {
 
     var author = document.createElement("div");
     author.innerHTML += authorFullName;
+    author.className = "author-list-item-elem"
     
     var removeButton = document.createElement("div");
-    removeButton.innerHTML += "X"
+    removeButton.innerHTML += "x"
     removeButton.addEventListener("click", removeAuthor);
     removeButton.setAttribute("data-author-id", authors[i].id);
+    removeButton.className = "author-list-item-elem author-list-item-remove-button";
 
     var authorsListItem = document.createElement("div");
     authorsListItem.appendChild(author);
     authorsListItem.appendChild(removeButton);
+    authorsListItem.className = "author-list-item";
 
     authorsList.appendChild(authorsListItem);
   }

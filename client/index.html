@@ -19,35 +19,42 @@
 </div>
 
 <div id="authors" class="tabcontent">
-  <div>
-    <h3>Authors</h3>
+  <div class="tabcontent-child">
+    <h2>Authors</h2>
     <div id="authors-list"></div>
-  </div>
-  <div>
-    <input id="author-first-name" type="text" placeholder="First name.."><br>
-    <input id="author-last-name" type="text" placeholder="Last name.."><br>
-    <button id="add-author" type="submit">Add author</button>
   </div>
 </div>
 
 <div id="books" class="tabcontent">
-  <div>
+  <div class="tabcontent-child">
     <h3>Books</h3>
     <div id="books-list"></div>
   </div>
-  <div>
+</div>
+
+<div id="stats" class="tabcontent">
+  <div class="tabcontent-child">
+    <h3>Stats</h3>
+    <div id="stats-container"></div>
+  </div>
+</div>
+
+<div id="authors-input" class="tabcontent-input-form">
+    <input id="author-first-name" type="text" placeholder="First name.."><br>
+    <input id="author-last-name" type="text" placeholder="Last name.."><br>
+    <button id="add-author" type="submit">Add author</button>
+</div>
+
+<div id="books-input" class="tabcontent-input-form">
     <select id="author-selector"></select><br>
     <input id="book-title" type="text" placeholder="Title.."><br>
     <input id="book-first-sentence" type="text" placeholder="First sentence.."><br>
     <input id="book-price" type="text" placeholder="Price.."><br>
     <input id="book-amount" type="text" placeholder="Amount.."><br>
     <button id="add-book" type="submit">Add book</button>
-  </div>
 </div>
 
-<div id="stats" class="tabcontent">
-  <h3>Stats</h3>
-  <div id="stats-container"></div>
+<div id="stats-input" class="tabcontent-input-form">
   <input id="word-filter" type="text" placeholder="Words to be excluded.."><br>
   <label>Max words:</label> 
   <input id="words-limit" type="number" min="3" max="20" value="5"><br>

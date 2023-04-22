@@ -60,7 +60,7 @@ function displayBooks() {
     firstSentence.innerHTML += books[i].firstSentence;
 
     var removeButton = document.createElement("div");
-    removeButton.innerHTML += "X"
+    removeButton.innerHTML += "x"
     removeButton.addEventListener("click", removeBook);
     removeButton.setAttribute("data-book-id", books[i].id);
 

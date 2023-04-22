@@ -6,12 +6,18 @@ function openTab(evt, tabName) {
     tabcontent[i].style.display = "none";
   }
 
+  tabinputs = document.getElementsByClassName("tabcontent-input-form");
+  for (i = 0; i < tabinputs.length; i++) {
+    tabinputs[i].style.display = "none";
+  }
+
   tablinks = document.getElementsByClassName("tablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
   document.getElementById(tabName).style.display = "block";
+  document.getElementById(tabName + "-input").style.display = "block";
   evt.currentTarget.className += " active";
 }
 
