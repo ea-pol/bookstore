@@ -26,7 +26,7 @@ function fetchBooks() {
     firstSentence: "Happy families are all alike; every unhappy family is unhappy in its own way..",
     price: 42,
     amount: 92
-  }
+  };
 
   var book4 = {
     id: 4,
@@ -35,12 +35,22 @@ function fetchBooks() {
     firstSentence: "It was in July, 1805, and the speaker was the well-known Anna Pavlovna Scherer, maid of honor and favorite of the Empress Marya Fedorovna..",
     price: 42,
     amount: 92
-  }
+  };
+
+  book5 = {
+    id: 5,
+    author: "Gabriel Garcia Marquez",
+    title: "One Hundred Years of Solitude",
+    firstSentence: "Many years later, as he faced the firing squad, Colonel Aureliano Buendia was to remember that distant afternoon when his father took him to discover ice..",
+    price: 42,
+    amount: 52
+  };
 
   books.push(book1);
   books.push(book2);
   books.push(book3);
   books.push(book4);
+  books.push(book5);
 
   return books;
 }
@@ -51,28 +61,27 @@ function displayBooks() {
 
   for (i = 0; i < books.length; i++) {
     var book = document.createElement("div");
-    book.innerHTML += "Title: " + books[i].title + " ";
-    book.innerHTML += "Author: " + books[i].author + " ";
-    book.innerHTML += "Price: " + books[i].price + " ";
-    book.innerHTML += "Amount: " + books[i].amount + " ";
-
+    book.innerHTML += "<strong>" + books[i].title + " by " + books[i].author + "</strong>";
+    book.className = "book-list-item-content-item";
+    
     var firstSentence = document.createElement("div");
     firstSentence.innerHTML += books[i].firstSentence;
+    firstSentence.className = "book-list-item-content-item";
 
     var bookContent = document.createElement("div");
     bookContent.appendChild(book);
     bookContent.appendChild(firstSentence);
-    bookContent.className = "list-item-elem";
+    bookContent.className = "book-list-item-content";
 
     var removeButton = document.createElement("div");
     removeButton.innerHTML += "x"
     removeButton.addEventListener("click", removeBook);
     removeButton.setAttribute("data-book-id", books[i].id);
-    removeButton.className = "list-item-elem list-item-remove-button";
+    removeButton.className = "book-list-item-remove-button";
 
     var booksListItem = document.createElement("div");
     booksListItem.appendChild(bookContent);
-    // booksListItem.appendChild(removeButton);
+    booksListItem.appendChild(removeButton);
     booksListItem.className = "book-list-item";
 
     booksList.appendChild(booksListItem);

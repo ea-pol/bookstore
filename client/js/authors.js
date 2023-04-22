@@ -15,9 +15,9 @@ function fetchAuthors() {
 
   var author3 = {
     id: 3,
-    firstName: "Thomas",
-    lastName: "Anderson"
-  }
+    firstName: "Gabriel",
+    lastName: "Garcia Marquez"
+  };
 
   authors.push(author1);
   authors.push(author2);
@@ -35,13 +35,13 @@ function displayAuthors() {
 
     var author = document.createElement("div");
     author.innerHTML += authorFullName;
-    author.className = "author-list-item-elem"
+    author.className = "author-list-item-content"
     
     var removeButton = document.createElement("div");
     removeButton.innerHTML += "x"
     removeButton.addEventListener("click", removeAuthor);
     removeButton.setAttribute("data-author-id", authors[i].id);
-    removeButton.className = "author-list-item-elem author-list-item-remove-button";
+    removeButton.className = "author-list-item-content author-list-item-remove-button";
 
     var authorsListItem = document.createElement("div");
     authorsListItem.appendChild(author);
