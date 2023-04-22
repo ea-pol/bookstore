@@ -11,19 +11,38 @@ function fetchStats() {
     count: 92
   };
 
+  var wordStats3 = {
+    word: "hello",
+    count: 144
+  };
+
   stats.push(wordStats1);
   stats.push(wordStats2);
+  stats.push(wordStats3);
 
   return stats;
 }
 
 function displayStats() {
-  var statsContainer = document.getElementById("stats-container");
-  statsContainer.innerHTML = "";
+  var statsTable = document.getElementById("stats-table");
+  statsTable.innerHTML = "<tr><th>#</th><th>Word</th><th>Count</th></tr>";
   
   for (i = 0; i < stats.length; i++) {
-    var wordStats = document.createElement("div");
-    wordStats.innerHTML += stats[i].word + ": " + stats[i].count;
-    statsContainer.appendChild(wordStats);
+    var wordNumber = document.createElement("td");
+    wordNumber.innerHTML += i + 1;
+
+    var word = document.createElement("td");
+    word.innerHTML += stats[i].word;
+
+    var wordCount = document.createElement("td");
+    wordCount.innerHTML += stats[i].count;
+
+    var wordStats = document.createElement("tr");
+
+    wordStats.appendChild(wordNumber);
+    wordStats.appendChild(word);
+    wordStats.appendChild(wordCount);
+
+    statsTable.appendChild(wordStats);
   }
 }

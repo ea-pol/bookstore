@@ -95,3 +95,19 @@ body {font-family: "Lato", sans-serif;}
   margin-top: 5px;
   color: rgb(226, 198, 198);
 }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
