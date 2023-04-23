@@ -1,49 +1,17 @@
-function fetchAuthors() {
+function initAuthorsList() {
   var xhttp = new XMLHttpRequest();
+
   xhttp.onload = function() {
     var authors = JSON.parse(xhttp.responseText);
-    initAuthorsList(authors);
+    var authorsList = document.getElementById("authors-list");
+
+    for (i = 0; i < authors.length; i++) {
+      addAuthorToList(authorsList, authors[i]);
+    }
   }
+
   xhttp.open("GET", "http://localhost/api/authors", true);
   xhttp.send();
-
-  /*
-  var authors = [];
-
-  var author1 = {
-    id: 1,
-    firstName: "Ray",
-    lastName: "Bradbury"
-  };
-
-  var author2 = {
-    id: 2,
-    firstName: "Leo",
-    lastName: "Tolstoy"
-  };
-
-  var author3 = {
-    id: 3,
-    firstName: "Gabriel",
-    lastName: "Garcia Marquez"
-  };
-
-  authors.push(author1);
-  authors.push(author2);
-  authors.push(author3);
-
-  return authors;
-  */
-}
-
-currentAuthorId = 4;
-
-function initAuthorsList(authors) {
-  var authorsList = document.getElementById("authors-list");
-
-  for (i = 0; i < authors.length; i++) {
-    addAuthorToList(authorsList, authors[i]);
-  }
 }
 
 function addAuthorToList(authorsList, author) {
@@ -62,7 +30,7 @@ function addAuthorToList(authorsList, author) {
   authorsListItem.appendChild(authorDiv);
   authorsListItem.appendChild(removeButton);
   authorsListItem.className = "author-list-item";
-  authorsListItem.setAttribute("data-author-id", author.id);
+  authorsListItem.setAttribute("data-author-id", author.authorId);
 
   authorsList.appendChild(authorsListItem);
 }
@@ -76,17 +44,22 @@ function createAuthor() {
   var authorFirstName = document.getElementById("author-first-name").value;
   var authorLastName = document.getElementById("author-last-name").value;
 
-  // Send request to server..
-
-  var author = {
-    id: currentAuthorId,
+  var newAuthor = {
     firstName: authorFirstName,
     lastName: authorLastName
   };
 
-  currentAuthorId += 1;
-  var authorsList = document.getElementById("authors-list");
-  addAuthorToList(authorsList, author);
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function() {
+    var author = JSON.parse(xhttp.responseText);
+    var authorsList = document.getElementById("authors-list");
+    addAuthorToList(authorsList, author);
+  }
+  
+  xhttp.open("POST", "http://localhost/api/authors", true);
+  xhttp.setRequestHeader('Content-type', 'application/json');
+  xhttp.send(JSON.stringify(newAuthor));
 }
 
 function removeAuthor(event) {

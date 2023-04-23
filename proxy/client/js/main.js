@@ -65,7 +65,7 @@ books = fetchBooks();
 var stats = fetchStats();
 
 initEventListeners();
-fetchAuthors();
+initAuthorsList();
 
 document.getElementById("tabauthors").click();
 checkServerStatus();
