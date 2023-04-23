@@ -48,8 +48,11 @@ body {font-family: "Lato", sans-serif;}
   width: 30%;
   border-left: none;
   height: 750px;
-  text-align: center;
   padding-top: 50px;
+}
+
+.input-form-container {
+  margin-left: 25%;
 }
 
 .author-list-item {

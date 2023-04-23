@@ -6,8 +6,7 @@ function fetchBooks() {
     author: "Ray Bradbury",
     title: "Fahrenheit 451",
     firstSentence: "It was a special pleasure to see things eaten, to see things blackened and changed..",
-    price: 42,
-    amount: 92
+    publicationDate: 1953
   };
 
   var book2 = {
@@ -15,8 +14,7 @@ function fetchBooks() {
     author: "Ray Bradbury",
     title: "Dandelion Wine",
     firstSentence: "It was a quiet morning, the town covered over with darkness and at ease in bed..",
-    price: 42,
-    amount: 92
+    publicationDate: 1957
   };
 
   var book3 = {
@@ -24,8 +22,7 @@ function fetchBooks() {
     author: "Leo Tolstoy",
     title: "Anna Karenina",
     firstSentence: "Happy families are all alike; every unhappy family is unhappy in its own way..",
-    price: 42,
-    amount: 92
+    publicationDate: 1878
   };
 
   var book4 = {
@@ -33,17 +30,15 @@ function fetchBooks() {
     author: "Leo Tolstoy",
     title: "War and Peace",
     firstSentence: "It was in July, 1805, and the speaker was the well-known Anna Pavlovna Scherer, maid of honor and favorite of the Empress Marya Fedorovna..",
-    price: 42,
-    amount: 92
+    publicationDate: 1869
   };
 
-  book5 = {
+  var book5 = {
     id: 5,
     author: "Gabriel Garcia Marquez",
     title: "One Hundred Years of Solitude",
     firstSentence: "Many years later, as he faced the firing squad, Colonel Aureliano Buendia was to remember that distant afternoon when his father took him to discover ice..",
-    price: 42,
-    amount: 52
+    publicationDate: 1967
   };
 
   books.push(book1);
@@ -61,7 +56,10 @@ function displayBooks() {
 
   for (i = 0; i < books.length; i++) {
     var book = document.createElement("div");
-    book.innerHTML += "<strong>" + books[i].title + " by " + books[i].author + "</strong>";
+    book.innerHTML += "<strong>" + books[i].title 
+      + " by " + books[i].author + ", " 
+      + books[i].publicationDate + "</strong>";
+
     book.className = "book-list-item-content-item";
     
     var firstSentence = document.createElement("div");
@@ -109,16 +107,14 @@ function addNewBook() {
   var bookAuthor = authorSelector.options[authorSelector.selectedIndex].text;
 
   var bookFirstSentence = document.getElementById("book-first-sentence").value;
-  var bookPrice = document.getElementById("book-price").value;
-  var bookAmount = document.getElementById("book-amount").value;
+  var bookPublicationDate = document.getElementById("book-publication-date").value;
 
   var book = {
     id: currentBookId,
     author: bookAuthor,
     title: bookTitle,
     firstSentence: bookFirstSentence,
-    price: bookPrice,
-    amount: bookAmount
+    publicationDate: bookPublicationDate
   };
 
   currentBookId += 1;

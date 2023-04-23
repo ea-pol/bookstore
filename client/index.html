@@ -40,25 +40,60 @@
 </div>
 
 <div id="authors-input" class="tabcontent-input-form">
-    <input id="author-first-name" type="text" placeholder="First name.."><br>
-    <input id="author-last-name" type="text" placeholder="Last name.."><br>
+  <div class="input-form-container">
+    <label>First name:</label>
+    <br>
+    <input id="author-first-name" type="text">
+    <br><br>
+
+    <label>Last name:</label>
+    <br>
+    <input id="author-last-name" type="text">
+    <br><br>
+
     <button id="add-author" type="submit">Add author</button>
+  </div>
 </div>
 
 <div id="books-input" class="tabcontent-input-form">
-    <select id="author-selector"></select><br>
-    <input id="book-title" type="text" placeholder="Title.."><br>
-    <input id="book-first-sentence" type="text" placeholder="First sentence.."><br>
-    <input id="book-price" type="text" placeholder="Price.."><br>
-    <input id="book-amount" type="text" placeholder="Amount.."><br>
+  <div class="input-form-container">
+    <label>Author:</label>
+    <br>
+    <select id="author-selector"></select>
+    <br><br>
+
+    <label>Title:</label>
+    <br>
+    <input id="book-title" type="text">
+    <br><br>
+
+    <label>Publication date:</label>
+    <br>
+    <input id="book-publication-date" type="number" min="0">
+    <br><br>
+
+    <label>First sentence:</label>
+    <br>
+    <textarea id="book-first-sentence" type="text" rows="5" cols="23"></textarea>
+    <br><br>
+
     <button id="add-book" type="submit">Add book</button>
+  </div>
 </div>
 
 <div id="stats-input" class="tabcontent-input-form">
-  <input id="word-filter" type="text" placeholder="Words to be excluded.."><br>
-  <label>Max words:</label> 
-  <input id="words-limit" type="number" min="3" max="20" value="5"><br>
-  <button id="update-stats" type="submit">Update stats</button>
+  <div class="input-form-container">
+    <label>Words limit:</label>
+    <input id="words-limit" type="number" min="3" max="20" value="5">
+    <br><br>
+
+    <label>Words to be excluded:</label>
+    <br>
+    <textarea id="word-filter" rows="5" cols="23" type="text"></textarea>
+    <br><br>
+
+    <button id="update-stats" type="submit">Update stats</button>
+  </div>
 </div>
 
 </body>
