@@ -51,6 +51,15 @@ function initEventListeners() {
   });
 }
 
+function checkServerStatus() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    console.log("Server is up!");
+  }
+  xhttp.open("GET", "http://localhost/api/status", true);
+  xhttp.send();
+}
+
 currentAuthorId = 4;
 authors = fetchAuthors();
 
@@ -60,4 +69,6 @@ books = fetchBooks();
 var stats = fetchStats();
 
 initEventListeners();
+
 document.getElementById("tabauthors").click();
+checkServerStatus();
