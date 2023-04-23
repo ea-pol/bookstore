@@ -44,7 +44,6 @@ function initEventListeners() {
   tabstats = document.getElementById("tabstats");
   tabstats.addEventListener("click", (event) => {
     openTab(event, "stats");
-    displayStats();
   });
 }
 
@@ -57,11 +56,14 @@ function checkServerStatus() {
   xhttp.send();
 }
 
-var stats = fetchStats();
+function main() {
+  initEventListeners();
 
-initEventListeners();
-fetchAuthorsList();
-fetchBooksList();
+  fetchAuthorsList();
+  fetchBooksList();
+  fetchStats();
+  
+  document.getElementById("tabauthors").click();
+}
 
-document.getElementById("tabauthors").click();
-checkServerStatus();
+main();

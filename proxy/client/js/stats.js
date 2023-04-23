@@ -1,29 +1,16 @@
 function fetchStats() {
-  var stats = []
+  var xhttp = new XMLHttpRequest();
 
-  var wordStats1 = {
-    word: "the",
-    count: 42
-  };
+  xhttp.onload = function() {
+    var stats = JSON.parse(xhttp.responseText);
+    displayStats(stats);
+  }
 
-  var wordStats2 = {
-    word: "a",
-    count: 92
-  };
-
-  var wordStats3 = {
-    word: "hello",
-    count: 144
-  };
-
-  stats.push(wordStats1);
-  stats.push(wordStats2);
-  stats.push(wordStats3);
-
-  return stats;
+  xhttp.open("GET", "http://localhost/api/sentences-stats", true);
+  xhttp.send();
 }
 
-function displayStats() {
+function displayStats(stats) {
   var statsTable = document.getElementById("stats-table");
   statsTable.innerHTML = "<tr><th>#</th><th>Word</th><th>Count</th></tr>";
   
