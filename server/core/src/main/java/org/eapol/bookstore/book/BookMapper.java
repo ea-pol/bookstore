@@ -10,8 +10,7 @@ public class BookMapper {
       AuthorMapper.toDto(book.getAuthor()),
       book.getTitle(),
       book.getFirstSentence(),
-      book.getPrice(),
-      book.getAmount()
+      book.getPublicationYear()
     );
   }
 }

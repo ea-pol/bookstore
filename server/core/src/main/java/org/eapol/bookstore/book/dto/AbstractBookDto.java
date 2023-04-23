@@ -1,36 +1,26 @@
 package org.eapol.bookstore.book.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public abstract class AbstractBookDto {
   @NotBlank
-  @JsonProperty("title")
   private String title;
 
   @NotBlank
-  @JsonProperty("first_sentence")
   private String firstSentence;
 
   @NotNull
-  @JsonProperty("price")
-  private Long price;
-
-  @NotNull
-  @JsonProperty("amount")
-  private Long amount;
+  private Long publicationYear;
 
   public AbstractBookDto(
     String title,
     String firstSentence,
-    Long price,
-    Long amount
+    Long publicationYear
   ) {
     this.title = title;
     this.firstSentence = firstSentence;
-    this.price = price;
-    this.amount = amount;
+    this.publicationYear = publicationYear;
   }
 
   public String getTitle() {
@@ -49,19 +39,11 @@ public abstract class AbstractBookDto {
     this.firstSentence = firstSentence;
   }
 
-  public Long getPrice() {
-    return price;
+  public Long getPublicationYear() {
+    return publicationYear;
   }
 
-  public void setPrice(Long price) {
-    this.price = price;
-  }
-
-  public Long getAmount() {
-    return amount;
-  }
-
-  public void setAmount(Long amount) {
-    this.amount = amount;
+  public void setPublicationYear(Long publicationYear) {
+    this.publicationYear = publicationYear;
   }
 }

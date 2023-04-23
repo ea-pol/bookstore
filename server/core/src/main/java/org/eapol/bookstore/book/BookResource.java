@@ -36,9 +36,10 @@ public class BookResource {
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
   public Response save(@Valid BookDtoPartial bookDtoPartial) {
-    bookService.save(bookDtoPartial);
-    return Response.noContent().build();
+    Book book = bookService.save(bookDtoPartial);
+    return Response.ok(BookMapper.toDto(book)).build();
   }
 
   @GET

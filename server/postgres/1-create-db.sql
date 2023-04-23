@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS book (
     author_id INT NOT NULL,
     title VARCHAR(50) NOT NULL,
     first_sentence VARCHAR(255) NOT NULL,
-    price INT NOT NULL,
-    amount INT NOT NULL,
+    publication_year INT NOT NULL,
     FOREIGN KEY (author_id) REFERENCES author (author_id) ON DELETE CASCADE
 );

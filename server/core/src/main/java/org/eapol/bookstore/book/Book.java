@@ -29,11 +29,8 @@ public class Book {
   @Column(name = "first_sentence")
   private String firstSentence;
 
-  @Column(name = "price")
-  private Long price;
-
-  @Column(name = "amount")
-  private Long amount;
+  @Column(name = "publication_year")
+  private Long publicationYear;
 
   public Book() {
   }
@@ -42,14 +39,12 @@ public class Book {
     Author author,
     String title,
     String firstSentence,
-    Long price,
-    Long amount
+    Long publicationYear
   ) {
     this.author = author;
     this.title = title;
     this.firstSentence = firstSentence;
-    this.price = price;
-    this.amount = amount;
+    this.publicationYear = publicationYear;
   }
 
   public Long getBookId() {
@@ -84,19 +79,11 @@ public class Book {
     this.firstSentence = firstSentence;
   }
 
-  public Long getPrice() {
-    return price;
+  public Long getPublicationYear() {
+    return publicationYear;
   }
 
-  public void setPrice(Long price) {
-    this.price = price;
-  }
-
-  public Long getAmount() {
-    return amount;
-  }
-
-  public void setAmount(Long amount) {
-    this.amount = amount;
+  public void setPublicationYear(Long publicationYear) {
+    this.publicationYear = publicationYear;
   }
 }

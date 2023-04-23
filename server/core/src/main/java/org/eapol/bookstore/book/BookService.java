@@ -27,7 +27,7 @@ public class BookService {
   }
 
   @Transactional
-  public void save(BookDtoPartial bookDtoPartial) {
+  public Book save(BookDtoPartial bookDtoPartial) {
     Long authorId = bookDtoPartial.getAuthorId();
 
     Author author = authorRepository
@@ -37,10 +37,10 @@ public class BookService {
     Book book = new Book(author,
       bookDtoPartial.getTitle(),
       bookDtoPartial.getFirstSentence(),
-      bookDtoPartial.getPrice(),
-      bookDtoPartial.getAmount());
+      bookDtoPartial.getPublicationYear());
 
     bookRepository.save(book);
+    return book;
   }
 
   @Transactional(readOnly = true)
@@ -69,8 +69,7 @@ public class BookService {
       book.setAuthor(author);
       book.setTitle(bookDtoPartial.getTitle());
       book.setFirstSentence(bookDtoPartial.getFirstSentence());
-      book.setAmount(bookDtoPartial.getAmount());
-      book.setPrice(bookDtoPartial.getPrice());
+      book.setPublicationYear(bookDtoPartial.getPublicationYear());
       return book;
     }).orElseThrow(() -> new NotFoundException(Book.class, id));
   }
