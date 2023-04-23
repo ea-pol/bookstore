@@ -100,7 +100,7 @@ function updateAuthorSelector() {
   }
 }
 
-function addNewBook() {
+function addBook() {
   var bookTitle = document.getElementById("book-title").value;
 
   var authorSelector = document.getElementById("author-selector");
