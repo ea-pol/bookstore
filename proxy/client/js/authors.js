@@ -65,7 +65,12 @@ function createAuthor() {
 function removeAuthor(event) {
   var authorToRemoveId = event.currentTarget.parentNode.dataset.authorId;
 
-  // Send request to server..
+  var xhttp = new XMLHttpRequest();
 
-  removeAuthorFromList(authorToRemoveId);
+  xhttp.onload = function() {
+    removeAuthorFromList(authorToRemoveId);
+  }
+
+  xhttp.open("DELETE", "http://localhost/api/authors/" + authorToRemoveId, true);
+  xhttp.send();
 }
