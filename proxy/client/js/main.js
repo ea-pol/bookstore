@@ -26,12 +26,10 @@ function initEventListeners() {
   tabbooks = document.getElementById("tabbooks");
   tabbooks.addEventListener("click", (event) => {
     openTab(event, "books");
-    displayBooks();
-    updateAuthorSelector();
   });
 
   addBookButton = document.getElementById("add-book");
-  addBookButton.addEventListener("click", addBook);
+  addBookButton.addEventListener("click", createBook);
   
   /* Authors */
   tabauthors = document.getElementById("tabauthors");
@@ -59,13 +57,11 @@ function checkServerStatus() {
   xhttp.send();
 }
 
-currentBookId = 5;
-books = fetchBooks();
-
 var stats = fetchStats();
 
 initEventListeners();
-initAuthorsList();
+fetchAuthorsList();
+fetchBooksList();
 
 document.getElementById("tabauthors").click();
 checkServerStatus();

@@ -1,4 +1,4 @@
-function initAuthorsList() {
+function fetchAuthorsList() {
   var xhttp = new XMLHttpRequest();
 
   xhttp.onload = function() {
@@ -8,6 +8,8 @@ function initAuthorsList() {
     for (i = 0; i < authors.length; i++) {
       addAuthorToList(authorsList, authors[i]);
     }
+
+    updateAuthorSelector();
   }
 
   xhttp.open("GET", "http://localhost/api/authors", true);
@@ -55,6 +57,7 @@ function createAuthor() {
     var author = JSON.parse(xhttp.responseText);
     var authorsList = document.getElementById("authors-list");
     addAuthorToList(authorsList, author);
+    updateAuthorSelector();
   }
   
   xhttp.open("POST", "http://localhost/api/authors", true);
@@ -69,8 +72,24 @@ function removeAuthor(event) {
 
   xhttp.onload = function() {
     removeAuthorFromList(authorToRemoveId);
+    fetchBooksList();
+    updateAuthorSelector();
   }
 
   xhttp.open("DELETE", "http://localhost/api/authors/" + authorToRemoveId, true);
   xhttp.send();
+}
+
+function updateAuthorSelector() {
+  var authorSelector = document.getElementById("author-selector");
+  var authorsList = document.getElementById("authors-list").children;
+
+  authorSelector.innerHTML = "";
+
+  for (i = 0; i < authorsList.length; i++) {
+    var authorOption = document.createElement("option");
+    authorOption.innerHTML += authorsList[i].children[0].innerHTML;
+    authorOption.setAttribute("value", authorsList[i].dataset.authorId);
+    authorSelector.appendChild(authorOption);
+  }
 }
