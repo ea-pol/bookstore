@@ -25,3 +25,11 @@ services:
       - 8081:8081
     depends_on:
       - core_service
+
+  proxy:
+    build: ./proxy
+    container_name: bookstore-proxy
+    ports:
+      - 80:80
+    depends_on:
+      - core_service
