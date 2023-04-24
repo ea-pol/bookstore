@@ -23,8 +23,8 @@ public class AuthorRepository {
 
   public List<Author> all() {
     return session()
-            .createQuery("FROM Author", Author.class)
-            .getResultList();
+      .createQuery("FROM Author", Author.class)
+      .getResultList();
   }
 
   public Optional<Author> getById(Long id) {
@@ -34,11 +34,11 @@ public class AuthorRepository {
 
   public void deleteById(Long id) {
     session()
-        .createQuery(
-            "DELETE FROM Author author " +
-            "WHERE author.authorId = :id")
-        .setParameter("id", id)
-        .executeUpdate();
+      .createQuery(
+        "DELETE FROM Author author " +
+          "WHERE author.authorId = :id")
+      .setParameter("id", id)
+      .executeUpdate();
   }
 
   private Session session() {

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="js/stats.js" defer></script>
+  <script src="js/books.js" defer></script>
+  <script src="js/authors.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <link rel="stylesheet" href="styles.css" />
+  <title>Bookstore</title>
+</head>
+<body>
+
+<h1>Bookstore</h1>
+
+<div class="tab">
+  <button id="tabauthors" class="tablinks">Authors</button>
+  <button id="tabbooks" class="tablinks">Books</button>
+  <button id="tabstats" class="tablinks">Stats</button>
+</div>
+
+<div id="authors" class="tabcontent">
+  <div class="tabcontent-child">
+    <h2>Authors</h2>
+    <div id="authors-list"></div>
+  </div>
+</div>
+
+<div id="books" class="tabcontent">
+  <div class="tabcontent-child">
+    <h2>Books</h2>
+    <div id="books-list"></div>
+  </div>
+</div>
+
+<div id="stats" class="tabcontent">
+  <div class="tabcontent-child">
+    <h2>Stats</h2>
+    <table id="stats-table"></table>
+  </div>
+</div>
+
+<div id="authors-input" class="tabcontent-input-form">
+  <div class="input-form-container">
+    <label>First name:</label>
+    <br>
+    <input id="author-first-name" type="text">
+    <br><br>
+
+    <label>Last name:</label>
+    <br>
+    <input id="author-last-name" type="text">
+    <br><br>
+
+    <button id="add-author" type="submit">Add author</button>
+  </div>
+</div>
+
+<div id="books-input" class="tabcontent-input-form">
+  <div class="input-form-container">
+    <label>Author:</label>
+    <br>
+    <select id="author-selector"></select>
+    <br><br>
+
+    <label>Title:</label>
+    <br>
+    <input id="book-title" type="text">
+    <br><br>
+
+    <label>Publication year:</label>
+    <br>
+    <input id="book-publication-year" type="number" min="0">
+    <br><br>
+
+    <label>First sentence:</label>
+    <br>
+    <textarea id="book-first-sentence" type="text" rows="5" cols="23"></textarea>
+    <br><br>
+
+    <button id="add-book" type="submit">Add book</button>
+  </div>
+</div>
+
+<div id="stats-input" class="tabcontent-input-form">
+  <div class="input-form-container">
+    <label>Min word length:</label><br>
+    <input id="min-word-length" type="number" min="1" value="1">
+    <br><br>
+
+    <label>Max number of words:</label><br>
+    <input id="max-num-of-words" type="number" min="3" value="5">
+    <br><br>
+
+    <label>Words to be excluded:</label>
+    <br>
+    <textarea id="words-tobe-excluded" rows="5" cols="23" type="text">the,a</textarea>
+    <br><br>
+
+    <button id="update-stats" type="submit">Update stats</button>
+  </div>
+</div>
+
+</body>
+</html> 

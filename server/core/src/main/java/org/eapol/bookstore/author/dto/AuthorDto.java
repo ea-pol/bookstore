@@ -1,9 +1,6 @@
 package org.eapol.bookstore.author.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class AuthorDto extends AuthorDtoPartial {
-  @JsonProperty("author_id")
   private Long authorId;
 
   public AuthorDto(Long authorId, String firstName, String lastName) {

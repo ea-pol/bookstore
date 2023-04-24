@@ -4,9 +4,11 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eapol.bookstore.book.BookService;
-import org.eapol.bookstore.stats.dto.Sentence;
+import org.eapol.bookstore.stats.dto.SentenceAnalyzerRequestParams;
 import org.eapol.bookstore.stats.dto.WordStats;
 
 import java.io.IOException;
@@ -26,15 +28,24 @@ public class StatsResource {
 
   @GET
   @Path("/sentences-stats")
-  @Produces(jakarta.ws.rs.core.MediaType.APPLICATION_JSON)
-  public Response calcSentencesStats() throws IOException {
-    List<Sentence> sentences = bookService
-      .getAllSentences()
-      .stream()
-      .map(Sentence::new)
-      .toList();
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response calcSentencesStats(
+    @QueryParam("minWordLength") Integer minWordLength,
+    @QueryParam("maxNumOfWords") Integer maxNumOfWords,
+    @QueryParam("wordsToBeExcluded") String wordsToBeExcluded
+  ) throws IOException {
 
-    List<WordStats> wordStats = statsService.findTopWordsForSentences(sentences);
+    List<String> sentences = bookService.getAllSentences();
+
+    SentenceAnalyzerRequestParams requestParams =
+      new SentenceAnalyzerRequestParams(
+        sentences,
+        minWordLength,
+        maxNumOfWords,
+        wordsToBeExcluded
+      );
+
+    List<WordStats> wordStats = statsService.findTopWordsForSentences(requestParams);
     return Response.ok(wordStats).build();
   }
 }

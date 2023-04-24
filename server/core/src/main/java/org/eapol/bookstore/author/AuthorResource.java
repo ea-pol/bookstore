@@ -36,9 +36,10 @@ public class AuthorResource {
 
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
   public Response createNewAuthor(@Valid AuthorDtoPartial authorDtoPartial) {
-    authorService.save(AuthorMapper.fromDto(authorDtoPartial));
-    return Response.noContent().build();
+    Author author = authorService.save(AuthorMapper.fromDto(authorDtoPartial));
+    return Response.ok(AuthorMapper.toDto(author)).build();
   }
 
   @GET
