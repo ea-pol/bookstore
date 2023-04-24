@@ -1,7 +1,5 @@
 # Bookstore
 
-![](/img/bookstore-ui.png)
-
 A simple web app that allows you to store information about books and their authors, and also calculate statistics (words frequencies) for the books' sentences.
 
 - [How to run](#how-to-run)
