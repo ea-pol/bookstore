@@ -16,6 +16,8 @@ A simple web app that allows you to store information about books and their auth
 
 The application utilizes port 80. You can interact with the app using the browser (open `localhost:80` or just `localhost`) or via [Bookstore API](#bookstore-api).
 
+The [create-db.sql](/server/postgres/1-create-db.sql) and [fill-db.sql](/server/postgres//2-fill-db.sql) scripts setup the app's database and fill it with some data. Before running the app, you can also execute [integration tests](/server/core/src/test/java/org/eapol/bookstore/BookstoreApplicationTests.java) for the core service to make sure the service works properly. To run the tests, navigate to the `server/core` folder and run the `./mvnw test` command.
+
 ## Bookstore API
 
 Bookstore API is an HTTP API that consumes and produces data in the JSON format. The API includes the following endpoints:
