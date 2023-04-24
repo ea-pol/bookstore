@@ -4,6 +4,7 @@ function fetchAuthorsList() {
   xhttp.onload = function() {
     var authors = JSON.parse(xhttp.responseText);
     var authorsList = document.getElementById("authors-list");
+    authorsList.innerHTML = "";
 
     for (i = 0; i < authors.length; i++) {
       addAuthorToList(authorsList, authors[i]);
@@ -83,7 +84,6 @@ function createAuthor() {
 function removeAuthor(event) {
   var authorToRemoveId = event.currentTarget.parentNode.dataset.authorId;
   var authorFullName = event.currentTarget.parentNode.children[0].innerHTML;
-  authorFullName = authorFullName.split("by");
 
   var remove = confirm(`Are you sure that you want `
     + `to remove ${authorFullName} from the list of authors? `
