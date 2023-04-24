@@ -6,6 +6,7 @@ A simple web app that allows you to store information about books and their auth
 - [Bookstore API](#bookstore-api)
 - [Request and Response Samples](#request-and-response-samples)
 - [Architecture](#architecture)
+- [Tech Stack](#tech-stack)
 
 ## How to Run
 
@@ -69,13 +70,29 @@ Bookstore API is an HTTP API that consumes and produces data in the JSON format.
 Request:
 
 ```
-...
+curl localhost/api/authors | json_pp
 ```
 
 Response:
 
 ```
-...
+[
+   {
+      "authorId" : 1,
+      "firstName" : "Ray",
+      "lastName" : "Bradbury"
+   },
+   {
+      "authorId" : 2,
+      "firstName" : "Leo",
+      "lastName" : "Tolstoy"
+   },
+   {
+      "authorId" : 3,
+      "firstName" : "Gabriel",
+      "lastName" : "Garcia Marquez"
+   }
+]
 ```
 
 #### Create a New Book
@@ -83,13 +100,25 @@ Response:
 Request:
 
 ```
-...
+curl -X POST localhost/api/books\
+   -H "Content-Type: application/json"\
+   -d '{"authorId": 1, "title": "The Martian Chronicles", "firstSentence": "One minute it was Ohio winter, with doors closed, windows locked, the panes blind with frost, icicles fringing every roof, children skiing on slopes, housewives lumbering like great black bears in their furs along the icy streets.", "publicationYear": 1950}' | json_pp
 ```
 
 Response:
 
 ```
-...
+{
+   "author" : {
+      "authorId" : 1,
+      "firstName" : "Ray",
+      "lastName" : "Bradbury"
+   },
+   "bookId" : 7,
+   "firstSentence" : "One minute it was Ohio winter, with doors closed, windows locked, the panes blind with frost, icicles fringing every roof, children skiing on slopes, housewives lumbering like great black bears in their furs along the icy streets.",
+   "publicationYear" : 1950,
+   "title" : "The Martian Chronicles"
+}
 ```
 
 #### Get Stats for the Books' Content
@@ -97,22 +126,47 @@ Response:
 Request:
 
 ```
-...
+curl localhost/api/sentences-stats | json_pp
 ```
 
 Response:
 
 ```
-...
+[
+   {
+      "count" : 9,
+      "word" : "the"
+   },
+   {
+      "count" : 7,
+      "word" : "was"
+   },
+   {
+      "count" : 5,
+      "word" : "in"
+   },
+   {
+      "count" : 5,
+      "word" : "it"
+   },
+   {
+      "count" : 5,
+      "word" : "with"
+   }
+]
 ```
 
 ## Architecture
 
 ...
 
-Components:
+The bookstore application consists of the following components:
 
-- **Web Server** (Nginx). Depending on the specified URL, the web server either returns HTML page to the client or proxies the request to the application server.
-- **Application Server** (Java 17, Maven, Spring Boot, Jersey, Hibernate). Contains the core application logic. Provides an HTTP API that allows for creating, reading, updating, and deleting the application's resources, such as authors and books.
-- **Sentence Analyzer**. A service that calculates stats for the books' content. Specifically, the service filter words using a filter condition and counts the number of occurrences for each word.
-- **Database** (PostgreSQL). Stores information about authors and books.
+- **Web Server**. Depending on the specified URL, the web server either returns HTML page with UI or makes a proxy pass to the application server.
+- **Application Server**. Contains the core application logic. Provides an [HTTP API](#bookstore-api) that allows for creating, reading, updating, and deleting the application's resources, such as authors and books.
+- **Sentence Analyzer**. A service that calculates stats for the books' sentences. Specifically, the service splits all sentences into separate words, filters them using the supplied conditions, and counts the number of times a word appears in the sentences. 
+- **Database**. Stores information about authors and books.
+
+## Tech Stack
+
+Nginx, Java 17, Maven, Spring Boot, Jersey, Hibernate, Docker, PostgreSQL, HTML, CSS, Vanilla JS.
