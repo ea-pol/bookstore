@@ -6,7 +6,7 @@ import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
-import org.eapol.bookstore.stats.dto.Sentence;
+import org.eapol.bookstore.stats.dto.SentenceAnalyzerRequestParams;
 import org.eapol.bookstore.stats.dto.WordStats;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +20,14 @@ public class StatsService {
   private static final ObjectMapper objectMapper = new ObjectMapper();
   private static final String SENTENCE_ANALYZER_URL = "http://bookstore-sentence-analyzer:8081/api/stats";
 
-  public List<WordStats> findTopWordsForSentences(List<Sentence> sentences) throws IOException {
-    String sentencesJson = objectMapper.writeValueAsString(sentences);
+  public List<WordStats> findTopWordsForSentences(
+    SentenceAnalyzerRequestParams requestParams
+  ) throws IOException {
+    String requestParamsJson = objectMapper.writeValueAsString(requestParams);
 
     RequestBody body = RequestBody.create(
       MediaType.parse("application/json"),
-      sentencesJson);
+      requestParamsJson);
 
     Request request = new Request.Builder()
       .url(SENTENCE_ANALYZER_URL)
