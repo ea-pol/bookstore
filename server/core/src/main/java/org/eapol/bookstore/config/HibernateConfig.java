@@ -4,6 +4,7 @@ import org.eapol.bookstore.author.Author;
 import org.eapol.bookstore.book.Book;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Environment;
+import org.hibernate.dialect.H2Dialect;
 import org.hibernate.dialect.PostgreSQLDialect;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
