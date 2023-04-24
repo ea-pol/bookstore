@@ -1,5 +1,7 @@
 # Bookstore
 
+![](/img/bookstore-ui.png)
+
 A simple web app that allows you to store information about books and their authors, and also calculate statistics (words frequencies) for the books' sentences.
 
 - [How to run](#how-to-run)
@@ -28,7 +30,7 @@ Bookstore API is an HTTP API that consumes and produces data in the JSON format.
 | api/books/{id} | GET, PUT, DELETE |
 | api/sentences-stats | GET |
 
-The `api/sentences-stats` endpoint returns words frequencies for the books' all sentences. The endpoint also accepts the following optional query parameters:
+The `api/sentences-stats` endpoint returns words frequencies for the books' sentences. The endpoint also accepts the following optional query parameters:
 
 - minWordLength
 - maxNumOfWords
@@ -40,7 +42,7 @@ The `api/sentences-stats` endpoint returns words frequencies for the books' all 
 
 ```
 {
-  id,
+  authorId,
   firstName,
   lastName
 }
@@ -50,7 +52,7 @@ The `api/sentences-stats` endpoint returns words frequencies for the books' all 
 
 ```
 {
-  id,
+  bookId,
   authorId,
   title,
   firstSentence,
@@ -128,7 +130,7 @@ Response:
 }
 ```
 
-#### Get Word Counts for the Books' Sentences
+#### Get Words Frequencies for the Books' Sentences
 
 Request:
 
@@ -165,7 +167,7 @@ Response:
 
 ## Architecture
 
-...
+![](/img/bookstore-app-architecture.png)
 
 The bookstore application consists of the following components:
 
