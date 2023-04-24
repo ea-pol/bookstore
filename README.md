@@ -2,6 +2,11 @@
 
 A simple web app that allows you to store information about books and their authors, and also calculate some statistics for the books' content.
 
+- [How to run](#how-to-run)
+- [Bookstore API](#bookstore-api)
+- [Request and Response Samples](#request-and-response-samples)
+- [Architecture](#architecture)
+
 ## How to Run
 
 1. Clone the repository.
@@ -59,7 +64,47 @@ Bookstore API is an HTTP API that consumes and produces data in the JSON format.
 
 ### Request and Response Samples
 
+#### Get All Authors
+
+Request:
+
+```
 ...
+```
+
+Response:
+
+```
+...
+```
+
+#### Create a New Book
+
+Request:
+
+```
+...
+```
+
+Response:
+
+```
+...
+```
+
+#### Get Stats for the Books' Content
+
+Request:
+
+```
+...
+```
+
+Response:
+
+```
+...
+```
 
 ## Architecture
 
@@ -67,7 +112,7 @@ Bookstore API is an HTTP API that consumes and produces data in the JSON format.
 
 Components:
 
-- Web Server (Nginx). Depending on the specified URL, the web server either returns HTML page to the client or proxies the request to the application server.
-- Application Server (Java 17, Maven, Spring Boot, Jersey, Hibernate). Contains the core application logic. Provides an HTTP API that allows for creating, reading, updating, and deleting the application's resources, such as authors and books.
-- Sentence Analyzer. A service that calculates stats for the books' content. Specifically, the service filter words using a filter condition and counts the number of occurrences for each word.
-- Database (PostgreSQL). Stores information about authors and books.
+- **Web Server** (Nginx). Depending on the specified URL, the web server either returns HTML page to the client or proxies the request to the application server.
+- **Application Server** (Java 17, Maven, Spring Boot, Jersey, Hibernate). Contains the core application logic. Provides an HTTP API that allows for creating, reading, updating, and deleting the application's resources, such as authors and books.
+- **Sentence Analyzer**. A service that calculates stats for the books' content. Specifically, the service filter words using a filter condition and counts the number of occurrences for each word.
+- **Database** (PostgreSQL). Stores information about authors and books.
