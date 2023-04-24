@@ -14,7 +14,7 @@ A simple web app that allows you to store information about books and their auth
 2. Move to the project's folder.
 3. Run `docker compose up`.
 
-The application utilizes port 80. You can interact with the app using the browser (open `localhost:80` or just `localhost`) or via [Bookstore API](#bookstore-api) directly.
+The application utilizes port 80. You can interact with the app using the browser (open `localhost:80` or just `localhost`) or via [Bookstore API](#bookstore-api).
 
 ## Bookstore API
 
@@ -169,7 +169,7 @@ Response:
 
 The bookstore application consists of the following components:
 
-- **Web Server**. Depending on the specified URL, the web server either returns HTML page with UI or does a proxy pass to the application server.
+- **Web Server**. Depending on the URL the client specifies, the web server either returns HTML page with UI or performs a proxy pass to the application server.
 - **Application Server**. Contains the core application logic. Provides an [HTTP API](#bookstore-api) that allows for creating, reading, updating, and deleting of the application's resources, such as authors and books.
 - **Sentence Analyzer**. A service that calculates words frequencies for the books' sentences.
 - **Database**. Stores information about authors and books.
