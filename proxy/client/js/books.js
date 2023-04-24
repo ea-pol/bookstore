@@ -58,6 +58,26 @@ function createBook() {
   var bookFirstSentence = document.getElementById("book-first-sentence").value;
   var bookPublicationYear = document.getElementById("book-publication-year").value;
 
+  if (bookAuthorId === "") {
+    alert("Please specify book author");
+    return;
+  }
+
+  if (bookTitle === "") {
+    alert("Please specify book title");
+    return;
+  }
+
+  if (bookFirstSentence === "") {
+    alert("Please specify book first sentence");
+    return;
+  }
+
+  if (bookPublicationYear === "") {
+    alert("Please specify book publication year");
+    return;
+  }
+
   var newBook = {
     authorId: bookAuthorId,
     title: bookTitle,
@@ -68,6 +88,11 @@ function createBook() {
   var xhttp = new XMLHttpRequest();
 
   xhttp.onload = function() {
+    if (xhttp.status == 422) {
+      alert(`The selected author already has a book called ${bookTitle}`);
+      return;
+    }
+
     var book = JSON.parse(xhttp.responseText);
     var booksList = document.getElementById("books-list");
     addBookToList(booksList, book);
@@ -80,13 +105,20 @@ function createBook() {
 
 function removeBook(event) {
   var bookToRemoveId = event.currentTarget.parentNode.dataset.bookId;
+  var bookTitle = event.currentTarget.parentNode.children[0].children[0].innerHTML;
+  var bookTitle = bookTitle.split(" by")[0].split(">")[1];
 
-  var xhttp = new XMLHttpRequest();
+  var remove = confirm(`Are you sure that you want to`
+    + ` remove "${bookTitle}" from the list of books?`);
 
-  xhttp.onload = function() {
-    removeBookFromList(bookToRemoveId);
+  if (remove) {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function() {
+      removeBookFromList(bookToRemoveId);
+    }
+  
+    xhttp.open("DELETE", "http://localhost/api/books/" + bookToRemoveId, true);
+    xhttp.send();
   }
-
-  xhttp.open("DELETE", "http://localhost/api/books/" + bookToRemoveId, true);
-  xhttp.send();
 }

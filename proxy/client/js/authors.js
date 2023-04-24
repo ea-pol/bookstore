@@ -46,6 +46,16 @@ function createAuthor() {
   var authorFirstName = document.getElementById("author-first-name").value;
   var authorLastName = document.getElementById("author-last-name").value;
 
+  if (authorFirstName === "") {
+    alert("Please specify author first name");
+    return;
+  }
+
+  if (authorLastName === "") {
+    alert("Please specify author last name");
+    return;
+  }
+
   var newAuthor = {
     firstName: authorFirstName,
     lastName: authorLastName
@@ -54,6 +64,11 @@ function createAuthor() {
   var xhttp = new XMLHttpRequest();
 
   xhttp.onload = function() {
+    if (xhttp.status == 422) {
+      alert(`${authorFirstName} ${authorLastName} is already in the list of authors`);
+      return;
+    }
+
     var author = JSON.parse(xhttp.responseText);
     var authorsList = document.getElementById("authors-list");
     addAuthorToList(authorsList, author);
@@ -67,17 +82,25 @@ function createAuthor() {
 
 function removeAuthor(event) {
   var authorToRemoveId = event.currentTarget.parentNode.dataset.authorId;
+  var authorFullName = event.currentTarget.parentNode.children[0].innerHTML;
+  authorFullName = authorFullName.split("by");
 
-  var xhttp = new XMLHttpRequest();
+  var remove = confirm(`Are you sure that you want `
+    + `to remove ${authorFullName} from the list of authors? `
+    + `Note that all the author's books also will be removed!`);
 
-  xhttp.onload = function() {
-    removeAuthorFromList(authorToRemoveId);
-    fetchBooksList();
-    updateAuthorSelector();
+  if (remove) {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function() {
+      removeAuthorFromList(authorToRemoveId);
+      fetchBooksList();
+      updateAuthorSelector();
+    }
+  
+    xhttp.open("DELETE", "http://localhost/api/authors/" + authorToRemoveId, true);
+    xhttp.send();
   }
-
-  xhttp.open("DELETE", "http://localhost/api/authors/" + authorToRemoveId, true);
-  xhttp.send();
 }
 
 function updateAuthorSelector() {

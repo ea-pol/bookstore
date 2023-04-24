@@ -23,6 +23,16 @@ function updateStats() {
   var maxNumOfWords = document.getElementById("max-num-of-words").value;
   var wordsToBeExcluded = document.getElementById("words-tobe-excluded").value;
 
+  if (minWordLength === "") {
+    alert("Please specify minimal word length");
+    return;
+  }
+
+  if (maxNumOfWords === "") {
+    alert("Please specify maximum number of words to display");
+    return;
+  }
+
   var queryParams = {
     minWordLength: minWordLength,
     maxNumOfWords: maxNumOfWords,
