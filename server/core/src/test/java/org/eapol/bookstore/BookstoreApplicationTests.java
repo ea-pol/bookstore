@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.eapol.bookstore.author.dto.AuthorDto;
-import org.eapol.bookstore.stats.dto.WordStats;
 import org.hamcrest.core.IsEqual;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
