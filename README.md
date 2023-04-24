@@ -1,6 +1,6 @@
 # Bookstore
 
-A simple web app that allows you to store information about books and their authors, and also calculate some statistics for the books' content.
+A simple web app that allows you to store information about books and their authors, and also calculate some statistics for the books' sentences.
 
 - [How to run](#how-to-run)
 - [Bookstore API](#bookstore-api)
@@ -14,7 +14,7 @@ A simple web app that allows you to store information about books and their auth
 2. Move to the project's folder.
 3. Run `docker compose up`.
 
-The application utilizes port 80. You can interact with the app using the browser (open `localhost:80` or just `localhost`) or directly via [Bookstore API](#bookstore-api).
+The application utilizes port 80. You can interact with the app using the browser (open `localhost:80` or just `localhost`) or via [Bookstore API](#bookstore-api) directly.
 
 ## Bookstore API
 
@@ -100,9 +100,10 @@ Response:
 Request:
 
 ```
-curl -X POST localhost/api/books\
-   -H "Content-Type: application/json"\
-   -d '{"authorId": 1, "title": "The Martian Chronicles", "firstSentence": "One minute it was Ohio winter, with doors closed, windows locked, the panes blind with frost, icicles fringing every roof, children skiing on slopes, housewives lumbering like great black bears in their furs along the icy streets.", "publicationYear": 1950}' | json_pp
+curl -X POST localhost/api/books \
+   -H "Content-Type: application/json" \
+   -d '{"authorId": 1, "title": "The Martian Chronicles", "firstSentence": "One minute it was Ohio winter, with doors closed, windows locked, the panes blind with frost, icicles fringing every roof, children skiing on slopes, housewives lumbering like great black bears in their furs along the icy streets.", "publicationYear": 1950}' \
+   | json_pp
 ```
 
 Response:
@@ -121,7 +122,7 @@ Response:
 }
 ```
 
-#### Get Stats for the Books' Content
+#### Get Word Counts for the Books' Sentences
 
 Request:
 
@@ -162,9 +163,9 @@ Response:
 
 The bookstore application consists of the following components:
 
-- **Web Server**. Depending on the specified URL, the web server either returns HTML page with UI or makes a proxy pass to the application server.
-- **Application Server**. Contains the core application logic. Provides an [HTTP API](#bookstore-api) that allows for creating, reading, updating, and deleting the application's resources, such as authors and books.
-- **Sentence Analyzer**. A service that calculates stats for the books' sentences. Specifically, the service splits all sentences into separate words, filters them using the supplied conditions, and counts the number of times a word appears in the sentences. 
+- **Web Server**. Depending on the specified URL, the web server either returns HTML page with UI or does a proxy pass to the application server.
+- **Application Server**. Contains the core application logic. Provides an [HTTP API](#bookstore-api) that allows for creating, reading, updating, and deleting of the application's resources, such as authors and books.
+- **Sentence Analyzer**. A service that calculates words frequencies for the books' sentences.
 - **Database**. Stores information about authors and books.
 
 ## Tech Stack
