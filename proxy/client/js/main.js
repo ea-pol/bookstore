@@ -45,6 +45,9 @@ function initEventListeners() {
   tabstats.addEventListener("click", (event) => {
     openTab(event, "stats");
   });
+
+  updateStatsButton = document.getElementById("update-stats");
+  updateStatsButton.addEventListener("click", updateStats);
 }
 
 function checkServerStatus() {

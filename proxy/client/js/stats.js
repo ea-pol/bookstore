@@ -1,4 +1,4 @@
-function fetchStats() {
+function fetchStats(queryParams) {
   var xhttp = new XMLHttpRequest();
 
   xhttp.onload = function() {
@@ -6,8 +6,30 @@ function fetchStats() {
     displayStats(stats);
   }
 
-  xhttp.open("GET", "http://localhost/api/sentences-stats", true);
+  var queryString = "?";
+
+  if (queryParams !== undefined) {
+    queryString += "minWordLength=" + queryParams.minWordLength + "&";
+    queryString += "maxNumOfWords=" + queryParams.maxNumOfWords + "&";
+    queryString += "wordsToBeExcluded=" + queryParams.wordsToBeExcluded;
+  }
+
+  xhttp.open("GET", "http://localhost/api/sentences-stats" + queryString, true);
   xhttp.send();
+}
+
+function updateStats() {
+  var minWordLength = document.getElementById("min-word-length").value;
+  var maxNumOfWords = document.getElementById("max-num-of-words").value;
+  var wordsToBeExcluded = document.getElementById("words-tobe-excluded").value;
+
+  var queryParams = {
+    minWordLength: minWordLength,
+    maxNumOfWords: maxNumOfWords,
+    wordsToBeExcluded: wordsToBeExcluded
+  };
+
+  fetchStats(queryParams);
 }
 
 function displayStats(stats) {

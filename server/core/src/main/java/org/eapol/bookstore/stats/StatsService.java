@@ -22,8 +22,6 @@ public class StatsService {
   ) throws IOException {
     String requestParamsJson = objectMapper.writeValueAsString(requestParams);
 
-    System.out.println(requestParamsJson);
-
     RequestBody body = RequestBody.create(
       MediaType.parse("application/json"),
       requestParamsJson);

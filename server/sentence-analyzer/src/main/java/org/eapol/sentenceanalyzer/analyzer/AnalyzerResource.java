@@ -29,25 +29,17 @@ public class AnalyzerResource {
   public Response getStats(SentenceAnalyzerRequestParams requestParams) {
     List<String> sentences = requestParams.getSentences();
 
-    sentences.forEach(System.out::println);
-
     int maxNumOfWords = Optional
       .ofNullable(requestParams.getMaxNumOfWords())
       .orElse(DEFAULT_MAX_NUM_OF_WORDS);
-
-    System.out.println(maxNumOfWords);
 
     int minWordLength = Optional
       .ofNullable(requestParams.getMinWordLength())
       .orElse(DEFAULT_MIN_WORD_LENGTH);
 
-    System.out.println(minWordLength);
-
     Set<String> wordsToBeExcluded = new HashSet<>(Optional
       .ofNullable(requestParams.getWordsToBeExcluded())
       .orElse(Collections.emptyList()));
-
-    wordsToBeExcluded.forEach(System.out::println);
 
     List<WordStats> wordStats = sentences.stream()
       .map(sentence -> sentence.split("[^a-zA-Z0-9]"))
