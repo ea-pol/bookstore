@@ -28,7 +28,7 @@ Bookstore API is an HTTP API that consumes and produces data in the JSON format.
 | api/books/{id} | GET, PUT, DELETE |
 | api/sentences-stats | GET |
 
-The `api/sentences-stats` endpoint also allows you to specify the following query parameters:
+The `api/sentences-stats` endpoint returns words frequencies for the books' all sentences. The endpoint also accepts the following optional query parameters:
 
 - minWordLength
 - maxNumOfWords
