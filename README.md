@@ -1,6 +1,6 @@
 # Bookstore
 
-A simple web app that allows you to store information about books and their authors, and also calculate some statistics for the books' sentences.
+A simple web app that allows you to store information about books and their authors, and also calculate statistics (words frequencies) for the books' sentences.
 
 - [How to run](#how-to-run)
 - [Bookstore API](#bookstore-api)
@@ -27,6 +27,12 @@ Bookstore API is an HTTP API that consumes and produces data in the JSON format.
 | api/books | GET, POST |
 | api/books/{id} | GET, PUT, DELETE |
 | api/sentences-stats | GET |
+
+The `api/sentences-stats` endpoint also allows you to specify the following query parameters:
+
+- minWordLength
+- maxNumOfWords
+- wordsToBeExcluded (comma separated)
 
 ### Schemas
 
