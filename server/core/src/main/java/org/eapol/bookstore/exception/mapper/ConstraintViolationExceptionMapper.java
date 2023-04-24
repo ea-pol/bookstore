@@ -1,9 +1,10 @@
-package org.eapol.bookstore.exception;
+package org.eapol.bookstore.exception.mapper;
 
 import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
+import org.eapol.bookstore.exception.Error;
 
 public class ConstraintViolationExceptionMapper
   implements ExceptionMapper<ConstraintViolationException> {
