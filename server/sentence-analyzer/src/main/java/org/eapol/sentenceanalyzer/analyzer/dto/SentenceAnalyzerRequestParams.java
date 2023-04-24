@@ -1,27 +1,23 @@
-package org.eapol.bookstore.stats.dto;
+package org.eapol.sentenceanalyzer.analyzer.dto;
 
-import java.util.Collections;
 import java.util.List;
 
 public class SentenceAnalyzerRequestParams {
   private List<String> sentences;
   private Integer minWordLength;
   private Integer maxNumOfWords;
-  private List<String> wordsToBeExcluded = Collections.emptyList();
+  private List<String> wordsToBeExcluded;
 
   public SentenceAnalyzerRequestParams(
     List<String> sentences,
     Integer minWordLength,
     Integer maxNumOfWords,
-    String wordsToBeExcluded
+    List<String> wordsToBeExcluded
   ) {
     this.sentences = sentences;
     this.minWordLength = minWordLength;
     this.maxNumOfWords = maxNumOfWords;
-
-    if (wordsToBeExcluded != null) {
-      this.wordsToBeExcluded = List.of(wordsToBeExcluded.split(","));
-    }
+    this.wordsToBeExcluded = wordsToBeExcluded;
   }
 
   public List<String> getSentences() {
@@ -56,3 +52,4 @@ public class SentenceAnalyzerRequestParams {
     this.wordsToBeExcluded = wordsToBeExcluded;
   }
 }
+

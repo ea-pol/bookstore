@@ -2,10 +2,7 @@ package org.eapol.bookstore.stats;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.*;
 import org.eapol.bookstore.stats.dto.SentenceAnalyzerRequestParams;
 import org.eapol.bookstore.stats.dto.WordStats;
 import org.springframework.stereotype.Service;
@@ -25,6 +22,8 @@ public class StatsService {
   ) throws IOException {
     String requestParamsJson = objectMapper.writeValueAsString(requestParams);
 
+    System.out.println(requestParamsJson);
+
     RequestBody body = RequestBody.create(
       MediaType.parse("application/json"),
       requestParamsJson);
@@ -34,13 +33,14 @@ public class StatsService {
       .post(body)
       .build();
 
-    com.squareup.okhttp.Response response = client
+    Response response = client
       .newCall(request)
       .execute();
 
     String statsJson = response.body().string();
 
     return objectMapper.readValue(
-      statsJson, new TypeReference<LinkedList<WordStats>>() {});
+      statsJson,
+      new TypeReference<LinkedList<WordStats>>() {});
   }
 }

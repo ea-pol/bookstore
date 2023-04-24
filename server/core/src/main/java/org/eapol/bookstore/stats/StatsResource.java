@@ -32,7 +32,7 @@ public class StatsResource {
   public Response calcSentencesStats(
     @QueryParam("minWordLength") Integer minWordLength,
     @QueryParam("maxNumOfWords") Integer maxNumOfWords,
-    @QueryParam("wordsToBeExcluded") List<String> wordsToBeExcluded
+    @QueryParam("wordsToBeExcluded") String wordsToBeExcluded
   ) throws IOException {
 
     List<String> sentences = bookService.getAllSentences();
