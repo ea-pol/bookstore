@@ -68,13 +68,13 @@ function createBook() {
     return;
   }
 
-  if (bookFirstSentence === "") {
-    alert("Please specify book first sentence");
+  if (bookPublicationYear === "") {
+    alert("Please specify book publication year");
     return;
   }
 
-  if (bookPublicationYear === "") {
-    alert("Please specify book publication year");
+  if (bookFirstSentence === "") {
+    alert("Please specify book first sentence");
     return;
   }
 
