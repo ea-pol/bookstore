@@ -1,12 +1,14 @@
 * {box-sizing: border-box}
-body {font-family: "Lato", sans-serif;}
+body {
+  font-family: "Lato", sans-serif;
+}
 
 .tab {
   float: left;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
   width: 20%;
-  height: 750px;
+  height: 700px;
 }
 
 .tab button {
@@ -34,12 +36,10 @@ body {font-family: "Lato", sans-serif;}
 .tabcontent {
   float: left;
   padding: 0px 12px;
-  border: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   width: 50%;
-  border-left: none;
-  height: 750px;
   text-align: center;
-  border-bottom: none;
+  margin-bottom: 50px;
 }
 
 .tabcontent-input-form {
@@ -47,8 +47,7 @@ body {font-family: "Lato", sans-serif;}
   padding: 0px 12px;
   border: 1px solid #ccc;
   width: 30%;
-  border-left: none;
-  height: 750px;
+  height: 700px;
   padding-top: 50px;
 }
 
