@@ -13,6 +13,8 @@ public abstract class AbstractBookDto {
   @NotNull
   private Long publicationYear;
 
+  public AbstractBookDto() {}
+
   public AbstractBookDto(
     String title,
     String firstSentence,

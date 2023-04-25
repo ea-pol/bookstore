@@ -13,6 +13,8 @@ public class AuthorDtoPartial {
     this.lastName = lastName;
   }
 
+  public AuthorDtoPartial() { }
+
   public String getFirstName() {
     return firstName;
   }

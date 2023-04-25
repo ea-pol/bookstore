@@ -8,6 +8,8 @@ public class BookDto extends AbstractBookDto {
   @JsonProperty("author")
   private AuthorDto authorDto;
 
+  public BookDto() { }
+
   public BookDto(
     Long bookId,
     AuthorDto authorDto,

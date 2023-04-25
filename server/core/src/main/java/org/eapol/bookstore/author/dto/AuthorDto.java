@@ -8,6 +8,10 @@ public class AuthorDto extends AuthorDtoPartial {
     this.authorId = authorId;
   }
 
+  public AuthorDto() {
+    super();
+  }
+
   public Long getAuthorId() {
     return authorId;
   }

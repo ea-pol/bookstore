@@ -6,7 +6,9 @@ public class BookDtoPartial extends AbstractBookDto {
   @NotNull
   private Long authorId;
 
-  BookDtoPartial(
+  public BookDtoPartial() { }
+
+  public BookDtoPartial(
     Long authorId,
     String title,
     String firstSentence,
